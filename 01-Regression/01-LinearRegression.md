@@ -52,7 +52,7 @@ There are five ways for doing feature selection while building a model:
 
 The **lower the p-value** is, the **more important** a particular variable is for our model.
 
-> The term is **'Step wise regression'** is often used for 2, 3, and 4 but sometimes, it refers only to 4, depending on context. 
+> The term **'Step wise regression'** is often used for 2, 3, and 4 but sometimes, it refers only to 4, depending on context. 
 
 **Dummy variables:**
 The variables that are created when categorical variables are encoded, are called dummy variables. 
