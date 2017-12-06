@@ -5,6 +5,7 @@ The Apriori algorithm has three parts titled **support**, **confidence** and **l
 **Support**
 
 The support for a movie M is defined by the following equation
+
 ![eq1](http://mathurl.com/y9g59dlu.png)
 
 **Confidence**
