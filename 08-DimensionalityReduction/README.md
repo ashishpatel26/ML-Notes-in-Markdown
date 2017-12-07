@@ -12,4 +12,4 @@ There are two ways to reduce the dimensions of any data set. Either you select s
 The things that we will cover in this section are as follows:
 
 1. [Principal Component Analysis](./01-PrincipalComponentAnalysis.md)
-2. 
+2. LDA
