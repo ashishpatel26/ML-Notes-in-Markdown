@@ -35,7 +35,8 @@ The Soft K-means algorithm works as follows:
 4. If converged, goto **Step 5**, else goto **Step 2**
 5. Finish
 
-##RESEARCH ARTICLES
+
+## RESEARCH ARTICLES
 
 1.  **K-Means++: The advantages of careful seeding**; [David Arthur, Sergei Vassilvitskii](http://ilpubs.stanford.edu:8090/778/1/2006-13.pdf)
 
@@ -47,6 +48,7 @@ The Soft K-means algorithm works as follows:
 
 	**[Solved]** Sensitivity to random start of K-means has been alleviated to some extent using fuzzy clustering. Any point does not fully belong to one cluster and there's a probability of over the asignment of any point to a cluaster.
 
-##CODE REFERENCES
+
+## CODE REFERENCES
 
 Read the [documentation](http://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html) for more 
