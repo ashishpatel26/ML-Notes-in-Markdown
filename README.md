@@ -3,6 +3,9 @@ My online notebook for Machine Learning notes
 
 This book contains short notes for the key machine learning algorithms and topics. In time, I will also update it to include references to other topics that I find interesting.
 
+#### [Prerequisites]((./00-Prerequisites/))
+
+
 1. [Regression](./01-Regression/)
 2. [Classification](./02-Classification/)
 3. [Clustering](./03-Clustering/)
