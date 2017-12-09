@@ -14,7 +14,6 @@ A system ![solset](http://mathurl.com/yc9hspko.png) is called a **solution** of 
 
 
 
-
 ## Vectors
 
 A vector is a numeric measurement with directions. In two dimensions, a vector ![v](http://mathurl.com/36zvquj.png) is of the form ![vector1](http://mathurl.com/y93w4hhl.png) and the magnitude of this vector is given by 
