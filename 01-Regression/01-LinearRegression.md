@@ -61,7 +61,7 @@ We usually use one-hot encoding to do this, and it might seem like not including
 
 *Dummy Variable trap*: One can never have all the dummy variables and b<sub>0</sub> in a model at the same time. We need to remove at least one dummy variable for each of the corresponding categorical variables because all of that will be modeled into b<sub>0</sub>. 
 
-**CODE REFERENCES**
+## CODE REFERENCES
 
 The function used for backward elimination in such models is from the class `statsmodels.formula.api` and is titled OLS (used as sm.OLS). The important thing to remember about this function is the fact that it requires the users to add a column of 1s in the matrix of features (at the beginning of the matrix) explicitly, to be a partner for the **b<sub>0</sub>** coefficient. 
 

@@ -8,3 +8,11 @@ There are powers to the same variable that now jointly represent the relationshi
 
 > One question that may be pertinent here is that why is it still called 'Linear' when it clearly displays a Polynomial relationship. The reason for that is, the word Linear corresponds to the relationship of the various coefficients and not the 'x' term itself. 
 
+## CODE REFERENCES
+
+### Python
+We would often not bother ourselves with feature scaling because most libraries have in-built support for the same. For instance
+
+```NumPy
+from sklearn.linear_model import LinearRegression
+```
