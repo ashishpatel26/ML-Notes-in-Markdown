@@ -13,6 +13,6 @@ There are powers to the same variable that now jointly represent the relationshi
 ### Python
 We would often not bother ourselves with feature scaling because most libraries have in-built support for the same. For instance
 
-```NumPy
+```{python}
 from sklearn.linear_model import LinearRegression
 ```
