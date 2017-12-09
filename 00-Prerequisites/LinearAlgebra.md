@@ -121,3 +121,10 @@ The dot products can be defined for two vectors or matrices in the following way
 		
 		The value that we obtain for `theta` from the operation above is in radians.
 		
+## Matrices
+
+Matrices are two dimensional set of numbers. These are very efficient data types for quick computations.
+
+### Initializing a matrix
+
+This can
