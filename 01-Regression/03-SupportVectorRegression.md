@@ -10,4 +10,3 @@ This method is regression equivalent of classification using [Support Vector Mac
 
 	**[SOLVED]** Review of various techniques, future scope in Support Vector Regression
 	
-
