@@ -15,6 +15,7 @@ We would often not bother ourselves with feature scaling because most libraries 
 
 An example of creating a polynomial model in Python is
 
+
 ```python
 from sklearn.preprocessing import PolynomialFeatures
 poly_reg = PolynomialFeatures(degree = 2)
@@ -29,3 +30,4 @@ X_poly = poly_reg.fit_transform(X)
 poly_reg1=  LinearRegression()
 poly_reg1.fit(X_poly, y)
 ```
+
