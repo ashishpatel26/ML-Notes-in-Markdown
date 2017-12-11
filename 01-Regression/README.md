@@ -4,3 +4,4 @@ This chapter offers introduction to various kind of regressions and their use ca
 
 1. [Linear Regression](./01-LinearRegression.md)
 2. [Polynomial Regression](./02-PolynomialRegression.md)
+3. [Support Vector Regression](./03-SupportVectorRegression.md)
