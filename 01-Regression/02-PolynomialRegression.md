@@ -27,7 +27,7 @@ X_poly = poly_reg.fit_transform(X)
 # the the polynomial terms (depending on our choice of 'degree' parameter
 # for the original variables of X. 
 
-poly_reg1=  LinearRegression()
+poly_reg1 =  LinearRegression()
 poly_reg1.fit(X_poly, y)
 ```
 
