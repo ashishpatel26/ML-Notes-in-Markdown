@@ -32,7 +32,7 @@ The dot products can be defined for two vectors or matrices in the following way
 	
 	1. Without using Numpy functions)
 	
-		```
+		```python
 		# Create the necessary variables
 		dotProd = 0
 		a = np.array([1,2,3])
@@ -48,7 +48,7 @@ The dot products can be defined for two vectors or matrices in the following way
 	 
 	2. Using `np.sum` function
 
-		```
+		```python
 		dotProd = np.sum(a*b)
 		
 		# The value of dotProd will be the same as the generic 
