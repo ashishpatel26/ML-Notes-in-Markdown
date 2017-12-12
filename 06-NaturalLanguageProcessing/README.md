@@ -25,6 +25,8 @@ This is the most basic model for Natural Language Processing. It works as follow
 4. Filter out other non-relevant words by setting a minimum frequency that a word must have across all observations in order for it to stay, 
 5. Train this matrix for the classes available in a similar fashion to classification.
 
+> The best models for classification on NLP based problems are **Naive Bayes**, **Decision Tree Learning** & **Random Forest** classification.
+
 ## Jargon
 
 ### Tokenization
@@ -41,7 +43,7 @@ A corpus is a collection of texts of the same type.
 
 ### Sparsity 
 
-The property that a matrix holding a lot of zeroes and very few values, is called sparsity.
+The property that a matrix holding a lot of zeroes and very few values, is called sparsity. This is usually not a good thing and can be reduced, either by removing the least frequent words by using the `max_features` parameter of `CountVectorizer` method (in Python) or using **Dimensionality Reduction** techniques. 
 
 ## CODE REFERENCES
 
