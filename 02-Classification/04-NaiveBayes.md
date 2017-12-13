@@ -2,7 +2,7 @@
 
 ## Intuition
 
-The Naive Bayes classifier works on Bayes Theorem.
+The Naive Bayes classifier works on Bayes Theorem. It is a generative machine learning algorithm, that is, unlike Logistic Regression and quite a few others which try to separate the two classes in the n-dimensional space, it rather tries to focus on one of the classes at a time and tries to place the new data point in one of these class's areas to classify it. In simple words, it tries to build a model for each one of the classes and then when a new data point arrives, it checks that which model describes the features of the new data points most aptly. 
 
 ### Bayes Theorem
 
