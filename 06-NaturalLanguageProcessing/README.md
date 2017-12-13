@@ -25,9 +25,25 @@ This is the most basic model for Natural Language Processing. It works as follow
 4. Filter out other non-relevant words by setting a minimum frequency that a word must have across all observations in order for it to stay, 
 5. Train this matrix for the classes available in a similar fashion to classification.
 
-> The best models for classification on NLP based problems are **Naive Bayes**, **Decision Tree Learning** & **Random Forest** classification.
+> * The matrix created in **Step 3** in the example above is called the **Term Document Matrix**
+
+> * The commonly used models for classification on NLP based problems are **Naive Bayes**, **Decision Tree Learning** & **Random Forest** classification but others maybe used as well if they fit the data well.
+
+#### Types of BoW Models
+
+1. **Word Frequency Proportions** ![wf](http://mathurl.com/yabrpcku.png): The proportions of each word with respect to all the words in the document. It is usually given by the equation:
+	
+	![wfequation](http://mathurl.com/yat29v9d.png)
+	
+2. **Raw Word count**: The raw word count for every word is taken as such.
+3. **Binary**: if a word appears then 1, else 0
+4. **TF-IDF**: Term Frequency - Inverse Document Frequency (takes into account the words that appear 
 
 ## Jargon
+
+### TF-IDF: Term Frequency - Inverse Document Frequency
+
+Taking into account the words that appear most frequently in many documents and therefore neglecting words like is, an, the etcetera. 
 
 ### Tokenization
 

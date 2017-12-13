@@ -61,6 +61,11 @@ and are usually calculated in that order.
 	4. The probability that needs to be calculated is the probability that a randomly selected datapoint will be within the **proximity range**, provided that we know that it already belongs to **Class 1**. From here, this become pretty straight forward to calculate and is given by
 	
 	![likelihoodformula](http://mathurl.com/yd4pdpnw.png)
+
+### Types
+
+1. **Multinomial NB**: This type of algorithm is usually used for counts like classification problems in NLP
+2. **Gaussian NB**: Details to go here. 
 	
 
 ### Advantages
@@ -74,5 +79,4 @@ and are usually calculated in that order.
 ### Disadvantages
 
 1. Assumption that every feature is independent, which is rarely the case. 
-
 
