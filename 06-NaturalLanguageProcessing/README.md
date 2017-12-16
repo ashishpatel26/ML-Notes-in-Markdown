@@ -37,7 +37,31 @@ This is the most basic model for Natural Language Processing. It works as follow
 	
 2. **Raw Word count**: The raw word count for every word is taken as such.
 3. **Binary**: if a word appears then 1, else 0
-4. **TF-IDF**: Term Frequency - Inverse Document Frequency (takes into account the words that appear 
+4. **TF-IDF**: Term Frequency - Inverse Document Frequency (takes into account the words that appear.
+
+## Use Cases
+
+### Parts of Speech Tagging
+
+This is the segment of NLP that deals with tagging various elements of a sentence with the parts of speech group that they belong to.
+
+### Name-Entity Recognition
+
+In the sentence `Albert Einstein is a genius`, the ability of an algorithm to decipher that **Abert Einstein** is a person, is called **NER**, and is another application of **NLP**. The results are provided in form parse tree.
+
+### Latent Semantic Analysis
+
+There are often more advanced problems that researchers of **NLP** face, like **synonymy**(multiple words having the same meaning) and **polysemy**(one word having multiple meanings). A common technique used for this is the creation of **Latent Variables**.
+
+### Article Spinning
+
+This is the art of changing certain aspects of a particular article that it appears to be a different one and avoids plagiarism. This algorithm works on the principal of Bayesian ML. A popular technique that we use for this is called **Trigram Model**. It models each word in the document as 
+
+![trigram](http://mathurl.com/ydevd32r.png)
+
+Then, we replace each word in the document with a certain probability, P. If we change literally every word then there will be high chance for the document to make no sense at all. Therefore it's essential that we only change some words and let others be. 
+
+> Both LSA and Trigram Models are unsupervised algorithms(have no class labels) and tend to learn the structure of our data.
 
 ## Jargon
 
@@ -49,9 +73,13 @@ Taking into account the words that appear most frequently in many documents and 
 
 Split all the different sentences into different words, each word gets a column which would contain the frequency of appearance of that word. This would be a sparse matrix that we would then operate upon it at will.
 
-### Stemming
+### Stemming & Lemmatization
 
-The process of collecting only the roots of words so that even if the same words appear in different forms, we always have a steady output and our machine learning models learn to recognize them properly and as the same words.
+The process of collecting only the roots of words so that even if the same words appear in different forms, we always have a steady output and our machine learning models learn to recognize them properly and as the same words. While stemming is the more basic/crude version of the above, Lemmatization is more sophisticated than that. While a **stemmer** might give you the word `theiv` after stemming the word `theives`, the **lemmatizer** will give you `theif` as the answer. 
+
+### Latent Variables
+
+The idea to combine words that often appear together using a probabilistic distribution over the terms. After this, these pairs of variables with very correlation will then be used to revamp the data accordingly, and hopefully the dimensions of this new data will be much lesser than the original one. Although, this would almost certainly help solve the Synonymy problem but it's not quite proven whether or not it helps solve the polysemy problem adn I think, ideally, it shouldn't. 
 
 ### Corpus
 
