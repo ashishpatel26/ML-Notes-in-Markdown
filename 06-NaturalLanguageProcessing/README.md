@@ -37,7 +37,9 @@ This is the most basic model for Natural Language Processing. It works as follow
 	
 2. **Raw Word count**: The raw word count for every word is taken as such.
 3. **Binary**: if a word appears then 1, else 0
-4. **TF-IDF**: Term Frequency - Inverse Document Frequency (takes into account the words that appear 
+4. **TF-IDF**: Term Frequency - Inverse Document Frequency (takes into account the words that appear.
+
+## Use Cases
 
 ### Parts of Speech Tagging
 
@@ -51,7 +53,15 @@ In the sentence `Albert Einstein is a genius`, the ability of an algorithm to de
 
 There are often more advanced problems that researchers of **NLP** face, like **synonymy**(multiple words having the same meaning) and **polysemy**(one word having multiple meanings). A common technique used for this is the creation of **Latent Variables**.
 
+### Article Spinning
 
+This is the art of changing certain aspects of a particular article that it appears to be a different one and avoids plagiarism. This algorithm works on the principal of Bayesian ML. A popular technique that we use for this is called **Trigram Model**. It models each word in the document as 
+
+![trigram](http://mathurl.com/ydevd32r.png)
+
+Then, we replace each word in the document with a certain probability, P. If we change literally every word then there will be high chance for the document to make no sense at all. Therefore it's essential that we only change some words and let others be. 
+
+> Both LSA and Trigram Models are unsupervised algorithms(have no class labels) and tend to learn the structure of our data.
 
 ## Jargon
 
