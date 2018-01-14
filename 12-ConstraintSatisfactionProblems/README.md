@@ -4,7 +4,11 @@ The problems of this category usually require the states and goal test to confor
 
 ## Definitions
 
-* A CSP is defined by a set of variables ![x1_xn](http://mathurl.com/yabc3fxk.png)  and a set of contraints given by ![c1_cn](http://mathurl.com/ycr6djl5.png). In this setup, each variable ![xi](http://mathurl.com/lo88zjm.png) has a non empty domain ![di](http://mathurl.com/yd47wdhh.png) of possible values.
+* A CSP is defined by 
+	* a set of variables ![x1_xn](http://mathurl.com/yabc3fxk.png)  
+	* a set of contraints given by ![c1_cn](http://mathurl.com/ycr6djl5.png). In this setup there can be three categories of constraints:
+		* asd
+	* each variable ![xi](http://mathurl.com/lo88zjm.png) has a non empty domain ![di](http://mathurl.com/yd47wdhh.png) of possible values. 
 * A **state** of the problem is defined by **assignment** of values to some or all of the variables {![](http://mathurl.com/y9bjh8dq.png), ![](http://mathurl.com/y83hv9nc.png), ...}.
 * An assignment that does not violate any constraints is called a **consistent** or **legal** assignment. 
 * A **complete** assignment is the one, in which all variables of a CSP are mentioned.
