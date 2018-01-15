@@ -14,6 +14,8 @@ On this object, the attribute `shape` represents the dimensions. It can be used 
 
 ## Operator overloading in 'np'
 
+### Mathematical Operators
+
 A simple operation like 
 
 ``` 
@@ -28,6 +30,9 @@ print(a+a)
 ```
 would return the element wise sum of the array, i.e. `[2,4,6]`
 
+### Boolean Operators
+
+In case of Boolean Operators over Numpy arrays, the preferred method of operation is using the Numpy function, `logical_and()`, `logical_or()` and `logical_not()`. These are Numpy array equivalents of `and`, `or` and `not` found in base Python.
 
 ## Mathematics
 
