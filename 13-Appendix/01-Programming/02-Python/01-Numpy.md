@@ -3,8 +3,40 @@
 Numpy is a library used specifically for advanced and faster data manipulation in Python. It allows us to effectively manage and manipulate our datasets with minimal programming. In this document, we will have a look at what are the most commonly used features of Numpy and how can we exploit them to optimize our Python programming. 
 
 
+## Arrays
+
+### 2-D Arrays
+
+We can create 2-D Numpy arrays as `a = np.array([[1,2,3], [4,5,6]])` and this would lead to a 2 dimensional array. 
+
+On this object, the attribute `shape` represents the dimensions. It can be used as `a.shape` to return `(2,3)` meaning **2 rows** and **3 columns** exist in this 2D array. 
+
+
+## Operator overloading in 'np'
+
+### Mathematical Operators
+
+A simple operation like 
+
+``` 
+a = [1, 2, 3]
+print(a+a) 
+```
+would return `[1,2,3,1,2,3]` but if you perform the operation with numpy as follows:
+
+```
+a = np.array([1,2,3])
+print(a+a)
+```
+would return the element wise sum of the array, i.e. `[2,4,6]`
+
+### Boolean Operators
+
+In case of Boolean Operators over Numpy arrays, the preferred method of operation is using the Numpy function, `logical_and()`, `logical_or()` and `logical_not()`. These are Numpy array equivalents of `and`, `or` and `not` found in base Python.
 
 ## Mathematics
+
+
 
 ### Dot Products 
 
