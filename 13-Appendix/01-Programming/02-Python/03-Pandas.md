@@ -12,6 +12,8 @@ There are multiple ways to create a Pandas dataframe, the commonly used one is t
 
 This can be done by using the syntax `df.index = ['label1', 'label2', ... 'labeln']` for **n** observations that exist in the dataframe.
 
+## Reading and Importing Data
+
 ### From CSVs
 
 It is relatively straightforward to be reading data from CSVs. One can use `pd.read_csv('path_to_csv.csv')` in order to read from a file. 
@@ -19,6 +21,10 @@ It is relatively straightforward to be reading data from CSVs. One can use `pd.r
 #### Assigning row labels
 
 In case the first column of the csv contains row labels for the data, then use `pd.read_csv('path_to_csv.csv', index_col=0)` for using the labels for your dataframe.
+
+#### Chunckwise loading
+
+In case of large datasets.
 
 ## Selecting and Index Data 
 
@@ -44,3 +50,45 @@ These are the two most commonly used methods (of Pandas Data Frame objects) for 
 	It can be further extended to include only specific columns using a comma, as in `df.loc[["row_label1", "row_label2"], ["column_label1", "column_label2"]]`. This query would only return the columns with labels **column_label1** and **column_label2**.
 
 2. **iloc**: Everything remains the same except that indices are used instead of labels.
+
+### Iterations
+
+#### Columns
+
+A basic `for` loop would result in iteration over column names. For instance, 
+
+```
+for i in pd_df:
+	print(i)
+```
+
+would simply print the columns names that exist in the pandas dataframe `pd_df`.
+
+#### Rows
+
+The rows need to be iterated over using the method `iterrows` of the pandas dataframe object that we are trying to access.
+
+```
+for lab, row in pd_df.iterrows():
+	print(lab)
+	print(row)
+```
+
+would then print, first the label, and then the contents of each row as a **Series** object.
+
+## Modifying a Dataframe
+
+### Adding a new column 
+
+#### Single Value: loc
+
+The operator `loc` can be used to add a new column to an existing dataframe. 
+
+```
+pd_df.loc["new_column"] = 2
+```
+should create a new column names `new_column` in the `pd_df` dataframe with the value `2` on all rows.
+
+#### Mutation: apply
+
+`pd_df["new_column"] = pd_df["old_column"].apply(len)` would add a new column with the length of values present in currently existing `old_column`.
