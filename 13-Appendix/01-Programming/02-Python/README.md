@@ -74,6 +74,41 @@ A **zip object** is an iterator of tuples, which can be turned into a list objec
 
 Objects of **zip** type can be unzipped into two separate variables using the **zip()** function with a combination of **\*** as shown in `name_new, brand_id_new = zip(*z)`.
 
+### Comprehensions
+
+#### Simple List Comprehensions
+
+A list comprehension is used to build lists without using for loops and comprises three basic elements, listed below:
+
+1. iterable
+2. iterator variable
+3. output expression
+
+```python
+new_list = [k + 2 for k in old_list]
+```
+The code above would iterate over all elements in `old_list` and add **2** in them to create the new list called `new_list`.
+
+#### Conditional LCs
+
+Conditional statements can also be added to LCs as shown in `new_list = [k + 2 for k in old_list if k % 2 == 0]`. This would return values only if the number being operated upon is even. 
+
+> There is one obvious problem in this technique of conditional LC; the size of list returned might not be the same as the size of input list.
+
+In order to fix this, a conditional LC with two conditions must be used. The only difference is that conditional statement will now be written before the `for` loop as `new_list = [k + 2 if k % 2 == 0 else 0 for k in old_list]`.
+
+#### Dictionary Comprehensions
+
+It is pretty much similar to the list comprehensions mentioned above except that curly brackets are used instead of square brackets. 
+
+### Generator
+
+A generator object can be created by using parenthesis instead of the usual square brackets as in `(k + 2 for k in old_list)`. It returns an iterable object of the type generator. 
+
+> It works on the concept of **Lazy Evaluations** therefore saving tons of memory required for evaluation until the value is actually required. 
+> 
+> **Generator Functions** have been defined in the "Functions" heading
+
 ## Functions
 
 New functions can be defined in python on using the following structure:
@@ -149,7 +184,30 @@ the function above would alter the global value of x because we have defined tha
 
 Generation of functions when required can be done in quicker way using the keyword `lambda` as `x = lambda x, y: x*y` would create a function `x` that can then be called like a normal function to find products of `x` and `y`.
 
-### Exception Handling
+### Generator Functions
+
+These can be used to create functions that are executed upon runtime but perform rather complicated tasks with ease. 
+
+```python
+def my_function(parameters):
+	""" A function that would act like a list being generated in realtime """
+	for i in parameters: # Assuming parameters is a list
+		yield(i+1)
+	
+x = my_function([1, 2, 4])
+```
+
+This would result in a dynamic generator object being created and stored in the variable **x**. This **x** can then be looped over as shown in the code below. This allows us to create a virtual dynamic function that is called and executed step by step on every iteration of the `for` loop that is called over `x`.
+
+```python
+for item in x:
+	print(x)
+```
+
+
+### Unexpected Behaviors
+
+#### Exception Handling
 
 We can catch different types of exceptions that occur during runtime for a given function using the code below. 
 
@@ -162,7 +220,7 @@ def add_two(parameter):
 		print("parameter must be an integer or float")
 ```
 
-### Custom Errors
+#### Custom Errors
 
 We can manually raise different types of error for a given function using the code below. 
 
@@ -176,3 +234,4 @@ def add_two_to_int(parameter):
 	except:
 		print("parameter must be an integer or float")
 ```
+

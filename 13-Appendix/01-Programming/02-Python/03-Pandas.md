@@ -24,7 +24,7 @@ In case the first column of the csv contains row labels for the data, then use `
 
 #### Chunckwise loading
 
-In case of large datasets.
+In case of large datasets, data can be loaded and processed in chunks. It can be done with the help of `for` loop as in `for chunk in pd.read_csv('path_to_csv.csv', chunksize = 1000)`.
 
 ## Selecting and Index Data 
 
