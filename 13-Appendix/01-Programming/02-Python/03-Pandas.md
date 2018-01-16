@@ -12,6 +12,8 @@ There are multiple ways to create a Pandas dataframe, the commonly used one is t
 
 This can be done by using the syntax `df.index = ['label1', 'label2', ... 'labeln']` for **n** observations that exist in the dataframe.
 
+## Reading and Importing Data
+
 ### From CSVs
 
 It is relatively straightforward to be reading data from CSVs. One can use `pd.read_csv('path_to_csv.csv')` in order to read from a file. 
@@ -19,6 +21,10 @@ It is relatively straightforward to be reading data from CSVs. One can use `pd.r
 #### Assigning row labels
 
 In case the first column of the csv contains row labels for the data, then use `pd.read_csv('path_to_csv.csv', index_col=0)` for using the labels for your dataframe.
+
+#### Chunckwise loading
+
+In case of large datasets.
 
 ## Selecting and Index Data 
 
