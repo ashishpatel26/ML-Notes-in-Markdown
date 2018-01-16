@@ -74,6 +74,35 @@ A **zip object** is an iterator of tuples, which can be turned into a list objec
 
 Objects of **zip** type can be unzipped into two separate variables using the **zip()** function with a combination of **\*** as shown in `name_new, brand_id_new = zip(*z)`.
 
+### List Comprehensions
+
+#### Simple LCs
+
+A list comprehension is used to build lists without using for loops and comprises three basic elements, listed below:
+
+1. iterable
+2. iterator variable
+3. output expression
+
+```python
+new_list = [k + 2 for k in old_list]
+```
+The code above would iterate over all elements in `old_list` and add **2** in them to create the new list called `new_list`.
+
+#### Conditional LCs
+
+Conditional statements can also be added to LCs as shown in `new_list = [k + 2 for k in old_list if k % 2 == 0]`. This would return values only if the number being operated upon is even. 
+
+> There is one obvious problem in this technique of conditional LC; the size of list returned might not be the same as the size of input list.
+
+In order to fix this, a conditional LC with two conditions must be used. The only difference is that conditional statement will now be written before the `for` loop as `new_list = [k + 2 if k % 2 == 0 else 0 for k in old_list]`.
+
+### Dictionary Comprehensions
+
+It is pretty much similar to the list comprehensions mentioned above except that curly brackets are used instead of square brackets. 
+
+
+
 ## Functions
 
 New functions can be defined in python on using the following structure:
