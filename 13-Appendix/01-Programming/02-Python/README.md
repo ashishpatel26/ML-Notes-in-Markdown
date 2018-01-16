@@ -15,3 +15,20 @@ In order to quickly check whether or not a key exists in a particular dictionary
 #### Deletion
 
 The obvious function for most deletions, `del` is used for **deleting** a **key-value pair** in any dictionary with the syntax being `del(dict["key"])`.
+
+## Control Statements
+
+### Enumeration over lists in for loop
+
+A common lookup for `for` loops is the iteration over lists or dictionaries using both keys and values. The simple syntax to do this is `for index, value in enumerate(my_list)` would then product both indices and values for lists. 
+
+### Iteration over dictionaries in for loop
+
+In case of dictionaries, the method `items()` must be called in order to properly iterate over items. The syntax for this, is as follows:
+
+```
+for key, value in my_dict.items():
+	do_something(key)
+```
+
+

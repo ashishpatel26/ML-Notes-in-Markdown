@@ -7,10 +7,19 @@ Numpy is a library used specifically for advanced and faster data manipulation i
 
 ### 2-D Arrays
 
-We can create 2-D Numpy arrays as `a = np.array([[1,2,3], [4,5,6]])` and this would lead to a 2 dimensional array. 
+We can create 2-D Numpy arrays as `a = np.array([[1,2,3], [4,5,6]])` and this would lead to a 2 dimensional array with 2 rows and 3 columns. 
 
 On this object, the attribute `shape` represents the dimensions. It can be used as `a.shape` to return `(2,3)` meaning **2 rows** and **3 columns** exist in this 2D array. 
 
+#### Iteration
+
+If iteration is required over every single element in a 2-D Array using a for loop, then the method `np.nditer` must be used in the following syntax:
+
+```
+for val in np.nditer(my_np_array):
+	do_something(val)
+```
+> The iteration in the case above will happen in a row wise fashion. First observation will be iterated over (and all features of this row will be called),  and then the second row and so forth.
 
 ## Operator overloading in 'np'
 
@@ -34,9 +43,16 @@ would return the element wise sum of the array, i.e. `[2,4,6]`
 
 In case of Boolean Operators over Numpy arrays, the preferred method of operation is using the Numpy function, `logical_and()`, `logical_or()` and `logical_not()`. These are Numpy array equivalents of `and`, `or` and `not` found in base Python.
 
+
+
 ## Mathematics
 
+### Random Operations
 
+1. In order to **generate a simple random number**, `np.random.rand()` can be used. This would result in a random number between **0** and **1**.
+2. We can **set a seed** using the function `np.random.seed(seedValue)` which would then introduce reproducability between our function calls.
+3. **Random integers** from a select range of integers can be generated using `np .random.randint(start_integer, end_integer)` which in this case would result in random integers between **start_integer** and **end_integer - 1** (because the end of range is not included in Python). 
+4. 
 
 ### Dot Products 
 
