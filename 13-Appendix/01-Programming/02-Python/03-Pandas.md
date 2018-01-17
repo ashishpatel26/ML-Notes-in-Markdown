@@ -50,7 +50,10 @@ It is relatively straightforward to be reading data from CSVs. One can use `pd.r
 	
 	This can also be done if there are more than one kinds of `NaN` values present in the dataset using a list of values as shown in `pd.read_csv('path.csv', na_values =  ['-1', '999'])` or using a dictionary as shown `pd.read_csv('path.csv', na_values =  {col1: '-1', col2: '999'})` if there are separate `NaN` characters in separate columns.
 4. **Assigning row labels**: In case the first column of the csv contains row labels for the data, then use `pd.read_csv('path_to_csv.csv', index_col=0)` for using the (row) labels for your dataframe.
-5. **Date values**: If year, month and date are in separate columns and need to be converged into one column, it can be done using `parse_dates` argument of the `read_csv()` function, e.g. `pd.read_csv('path_to_csv.csv', parse_dates = [[1, 2, 3]])` where columns with indices would contain year, month and day data.
+5. **Date values**: If year, month and date are in separate columns and need to be converged into one column, it can be done using `parse_dates` argument of the `read_csv()` function, e.g. `pd.read_csv('path_to_csv.csv', parse_dates = [[1, 2, 3]])` where columns with indices would contain year, month and day data. 
+	
+	Alternatively, we can parse the date-time values using `parse_dates = True` which would then convert all the dates that are ISO 8601 compatible (yyyy-mm-dd hh:mm:ss), into appropriate date structure. 
+	
 6. **Handling comments**: If the file contains comments within the data, they can be distinguished using the delimiter passed to the `comment` argument as shown in `pd.read_csv('path_to_csv.csv', comment='#')`
 
 #### Chunckwise loading
@@ -62,12 +65,7 @@ In case of large datasets, data can be loaded and processed in chunks. It can be
 1. **csv**: The method `to_csv()` for every DataFrame object allows us to export it to any file that we desire. It works as `pd_df.to_csv('filename.csv')`.
 2. **Excel**: The method `to_excel()` for every DataFrame object allows us to export it to an excel spreadsheet file that we desire. It works as `pd_df.to_csv('filename.xlsx')`.
 
-## Data Overview
 
-1. **Dimensions**: The `shape` attribute of any DataFrame can be used to check the dimensions.
-2. **Column Names**: The `columns` attribute of a DataFrame returns the names of all the columns.
-3. **Indices**: The atrributes `columns` and `index` can be used to retrieve the columns' and rows' index of a DataFrame.
-4. **Column Details**: Much like the `str` function in R, `info()` method can be used over any pandas DataFrame object in order to retrieve meaningful insight on columns. 
 
 ## Selecting and Index Data 
 
@@ -140,3 +138,49 @@ should create a new column names `new_column` in the `pd_df` dataframe with the 
 #### Mutation: apply
 
 `pd_df["new_column"] = pd_df["old_column"].apply(len)` would add a new column with the length of values present in currently existing `old_column`.
+
+## Exploring Data
+
+1. **Dimensions**: The `shape` attribute of any DataFrame can be used to check the dimensions.
+2. **Column Names**: The `columns` attribute of a DataFrame returns the names of all the columns.
+3. **Indices**: The atrributes `columns` and `index` can be used to retrieve the columns' and rows' index of a DataFrame.
+4. **Column Details**: Much like the `str` function in R, `info()` method can be used over any pandas DataFrame object in order to retrieve meaningful insight on columns. 
+5. **Statistical Summary**: Statistical summaries for pandas DataFrames can be quickly generated using the `describe()` method on any pandas DataFrame.
+6. **Interquantile range (IQR)**: Quantile ranges are useful when exploring a dataset and it can easily be determined by using `quantile()` method of Pandas dataframes. For instance, `pd_df.quantile([0.25, 0.75])` would return two values for each column in the dataset and half the data for those columns would lie between those two values. 
+7. **Range**: The range can be calculated using the `min()` and `max()` methods on any DataFrame.
+8. **Median**: The `median()` method can be used for finding out the median of any given dataset. 
+9. **Standard deviation**: The method `std()` can be used for finding out the standard deviation for any given column.
+10. **Unique objects**: Unique categories in any categorical column can be found using the `unique()` method.
+
+## Time Series with Pandas
+
+1. **Slicing on the basis of time**: Interesting selections can be done on date time indices, using selection operators like `pd_df.loc['2017-01-22':'2018-01-02']` to select the values for that 1 month.
+
+2. **Reindexing**: Any time series can be reindexed using the index of another time series by using the syntax `time_s2.reindex(time_s1.index)`
+3. **Forward Filling of Null Values**: Null values in a time series can be forward filled using `time_series.reindex(new_index, method = "ffill")`
+4. **Resampling**: There are two kinds of sampling that can be done with time series in Pandas dataframes:
+	1. **Downlsampling**: Reduce datetimes to lower frequency, i.e. from daily to weekly etc. 
+	2. **Upsampling**: Increasing the times to higher frequency, i.e. from daily to hourly etc.
+	
+	There are multiple parameters that we can pass to `resample()` method for allowing us to derive quick statistics from a time series. For instance, `pd_ts.resample('D').mean()` would allow us to have daily averages of all numeric columns of the time series dataframe.
+	
+	| Code | Meaning |
+	| ---- | ------- |
+	| `min`, `T` | Minute |
+	| `H`  | Hour |
+	| `D` | Day |
+	| `B` | Business Day |
+	| `W` | Week |
+	| `M` | Month |
+	| `Q` | Quarter |
+	| `Y` | Year |
+
+	Numeric values can be used as prefixes to the parameters above in order to increase or decrease the sampling size. For instance, `2W` can be used for downsampling for 2 weeks in `pd_ts.resample('2W').mean()`
+	
+	> The `ffill()` and `bfill()` methods can be used for filling in, rolling values as in `pd_ts.resample('2H').ffill()`.
+	
+### Moving Averages
+
+We can calculate moving averages, that allows us to focus on long term trends instead of being stuck in short term fluctuations. We do so by using the `rolling()` method as shown in `time_series.rolling(window=24).mean()` which would compute **new values for each point** but it will still be hourly data. This would instead set the value of that point as an average of trailing 24 datapoints, hence making it smoother. 
+	
+	

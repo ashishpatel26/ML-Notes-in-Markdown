@@ -23,11 +23,16 @@ plt.show()
 ### Histograms
 
 ```
-# bins = 10 by default and it corresponds to 
-# the number of bins required
-plt.hist(x, bins = 3)
+plt.hist(x)
 plt.show()
 ```
+
+#### Customizations
+
+1. **Bins**: The number of default `bins` for a histogram is 10, and it can be altered by passing a different value `plt.hist(x, bins =3)`
+2. **Range**: Setting the minimum and maximum value for a histogram is done by using the `range` argument and passing it a tuple `plt.hist(x, range = (0, 10))` 
+3. **Normalization**: The data can be normalized before the histogram is plotted using `normed` argument as `plt.hist(x, normed = True)`.
+4. **CDF**: A Cumulative Distribution Function can be calculated before plotting by using the Boolean argument `cumulative` in addition to `normed` while plotting `plt.hist(x, cumulative = True, normed = True)`.
 
 ### Plotting a DataFrame
 
