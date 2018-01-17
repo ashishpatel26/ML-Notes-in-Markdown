@@ -1,5 +1,13 @@
 # Python Programming
 
+## Libraries
+
+The following important libraries have been explored in addition to the text below:
+
+1. [Numpy](./01-Numpy.md)
+2. [MatPlotLib](./02-MatPlotLib.md)
+3. [Pandas](./03-Pandas.md)
+
 ## Data Types
 
 ### Tuples
@@ -19,6 +27,14 @@ In order to quickly check whether or not a key exists in a particular dictionary
 #### Deletion
 
 The obvious function for most deletions, `del` is used for **deleting** a **key-value pair** in any dictionary with the syntax being `del(dict["key"])`.
+
+### Strings
+
+#### Manipulations in Strings
+
+1. **Search for substring**: `contains()` method of the `str` attribute of every string out there, is used for getting back a Boolean result for a string column/atom with the value *True* if the substring exists otherwise *False*.
+
+
 
 ## Manipulations
 
