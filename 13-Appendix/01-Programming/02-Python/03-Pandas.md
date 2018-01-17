@@ -179,8 +179,24 @@ should create a new column names `new_column` in the `pd_df` dataframe with the 
 	
 	> The `ffill()` and `bfill()` methods can be used for filling in, rolling values as in `pd_ts.resample('2H').ffill()`.
 	
+	**Interpolation**: It can be carried out as follows:
+
+	```python 
+	pd_ts.resample('A').first().interpolate('linear')
+	
+	```
+	
+	This would resample and fill in the gaps between any two data points with **NaN** values. Then the `interpolate()` method would interpolate the values. 
+	
+5. **Datetime Methods**: These methods allow us to slice and select specific date time attributes from the data. 
+	1. **Select hours**: For instance `pd_ts['date'].dt.hour` would extract and return the *hour* where **0** is 12AM and **23** is 12PM.
+	2. **Timezone**: We can **define** the timezone for a particular column by using `pd_ts['date'].dt.tz_localize('US/Central')`. On the other hand, easy **conversions** can be made, using the method `tz_convert()` that is specifically used for converting dates and times in one timezone to another.
+	3. 
+	
 ### Moving Averages
 
 We can calculate moving averages, that allows us to focus on long term trends instead of being stuck in short term fluctuations. We do so by using the `rolling()` method as shown in `time_series.rolling(window=24).mean()` which would compute **new values for each point** but it will still be hourly data. This would instead set the value of that point as an average of trailing 24 datapoints, hence making it smoother. 
+
+
 	
 	
