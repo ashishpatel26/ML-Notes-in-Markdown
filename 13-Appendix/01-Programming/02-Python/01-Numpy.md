@@ -2,6 +2,12 @@
 
 Numpy is a library used specifically for advanced and faster data manipulation in Python. It allows us to effectively manage and manipulate our datasets with minimal programming. In this document, we will have a look at what are the most commonly used features of Numpy and how can we exploit them to optimize our Python programming. 
 
+## Import Data
+
+1. **Read a csv**: A **csv** file containing only numerical data can be imported using `np.loadtext('filepath.csv', delimiter = ",")`. The default delimiter is *whitespace* so explicit definition is required.
+2. **No Headers**: If the first row contains header, the `skiprows = 1` argument must be used to skip the first row.
+3. **Selective column import**: If only a certain number of columns are required to be imported, then we can use `usecols = [0,1,4]` attribute with column indices to import only a few of all columns possible. 
+4. **Import columns with different datatypes**: Although not recommended, Numpy has the ability to import dataframe like structures which contain different datatypes in different columns. This can be done using `np.genfromtxt()` function. Refer documentation for more.
 
 ## Arrays
 
