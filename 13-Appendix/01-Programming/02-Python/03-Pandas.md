@@ -27,7 +27,7 @@ y = [4, 5, 6]
 3. This will now need to be converted into a dictionary which would have column names (`labels`) and columns (`z`) using `data = dict(z)`
 4. After this, we use the method defined above for dictionaries, i.e. `pd.DataFrame(data)` to create a DataFrame.
 
-### Broadcasting
+#### Broadcasting
 
 It is the concept of **recycling** from R, that is called **broadcasting** in Python. The idea is, that a particular value can be recycled and used to fill all the other observations, if unsuitable number of details have been provided.
 
@@ -46,7 +46,7 @@ It is relatively straightforward to be reading data from CSVs. One can use `pd.r
 
 1. **No column labels**: If the data does not have column labels, `pd.read_csv('path_to_csv.csv', header = None)` will allow it to read data without it.
 2. **External column names**: External column names can be added to the data frame using the names argument, `pd.read_csv('path_to_csv.csv', header = None, names = list_of_names)`
-3. **Null value declaration**: If our data uses any other convention than `NaN` for declaring null values in it, we can explicitly define it, by setting the `na_values` attritbute to that character `pd.read_csv('path_to_csv.csv', na_values =  '-1')`
+3. **Null value declaration**: If our data uses any other convention than `NaN` for declaring null values in it, we can explicitly define it, by setting the `na_values` attritbute to that character `pd.read_csv('path_to_csv.csv', na_values =  ['-1'])`
 	
 	This can also be done if there are more than one kinds of `NaN` values present in the dataset using a list of values as shown in `pd.read_csv('path.csv', na_values =  ['-1', '999'])` or using a dictionary as shown `pd.read_csv('path.csv', na_values =  {col1: '-1', col2: '999'})` if there are separate `NaN` characters in separate columns.
 4. **Assigning row labels**: In case the first column of the csv contains row labels for the data, then use `pd.read_csv('path_to_csv.csv', index_col=0)` for using the (row) labels for your dataframe.
@@ -55,15 +55,77 @@ It is relatively straightforward to be reading data from CSVs. One can use `pd.r
 	Alternatively, we can parse the date-time values using `parse_dates = True` which would then convert all the dates that are ISO 8601 compatible (yyyy-mm-dd hh:mm:ss), into appropriate date structure. 
 	
 6. **Handling comments**: If the file contains comments within the data, they can be distinguished using the delimiter passed to the `comment` argument as shown in `pd.read_csv('path_to_csv.csv', comment='#')`
+7. **Delimiter**: The delimiter in while reading a csv to a Pandas DataFrame object can be set using `sep` argument
 
-#### Chunckwise loading
+#### Chunkwise loading
 
 In case of large datasets, data can be loaded and processed in chunks. It can be done with the help of `for` loop as in `for chunk in pd.read_csv('path_to_csv.csv', chunksize = 1000)`.
+
+### From Excel
+
+1. **Reading a file**: A simple read operation over an Excel Spreadsheet can be executed by using `x = pd.ExcelFile('filepath.xlsx')`. 
+2. **Listing sheets**: There can be multiple sheets involved in any particular file and they can be listed by using the `sheet_names` attribute as `print(x.sheet_names)`
+3. **Reading a particular sheet**: It is done by passing the sheet name to the `parse()` method as shown in `df_sheet = x.parse('sheet1')`
+4. **Custom Headers**: One can define custom headers while parsing from an excel sheet by using the `names()` argument.
+
+### From HDF5 (Hierarchical Data Format version5)
+
+This is data format commonly used for storing large quantities of numerical data in Python. This is done using the following code segment
+
+```python
+import h5py
+data = h5py.File("path_to_file.hdf5", "r")
+```
+
+You can explore the `data` object so obtained by using code similar to that required to explore a dictionary. 
+
+### From Pickles
+
+```python
+with open('file_path.pkl', 'rb') as file:
+    data = pickle.load(file)
+```
+
+### From SQL
+
+1. **Creating a Database engine**
+
+	```python
+	from sqlalchemy import create_engine
+	engine = create_engine("path to sql db connector") 
+	```
+2. **List Tables**: This can be done using `engine.table_names()` method of **engine** object.
+3. **Connecting to the engine**: This is done using the `connect()` method available with every sqlalchemy `engine` object.
+4. **Querying**: There are two ways to query an SQL database and they are as follows: 
+	1. The first one takes all of the above methods and works as follows:
+	
+		```python
+		con = engine.connect()
+		results = con.execute("SELECT * FROM table_name")
+		df = pd.DataFrame(results.fetchall())
+		df.columns = results.keys()
+		con.close()
+		```
+		
+		This syntax is very similar to the **PHP** syntax for this operation. We create a connection, then execute the query and get returned a results binary object. We then use `fetchall()` method to convert it to a flat structure and store it in a pandas dataframe. Finally, we add the column names to the dataframe that we created and close the connection. 
+	
+	2. The second method is much more concise and works just fine. It harnesses the power of Pandas library and works as follows:
+		
+		```python
+		df = pd.read_sql_query("SELECT * FROM table_name", engine)
+		```
+		
+		This single line of code then executes the command and returns the results in form of a DataFrame.
+
+5. **Fetch fewer rows**: Sometimes the SQL query that we execute might return humongous results, then we can use the `fetchmany()` function with the `size` argument over the `results` object in order to fetch a certain number of rows instead of all.
+	
+
 
 ## Exporting Data
 
 1. **csv**: The method `to_csv()` for every DataFrame object allows us to export it to any file that we desire. It works as `pd_df.to_csv('filename.csv')`.
 2. **Excel**: The method `to_excel()` for every DataFrame object allows us to export it to an excel spreadsheet file that we desire. It works as `pd_df.to_csv('filename.xlsx')`.
+3. **Numpy array**: Any Pandas DataFrame can be converted into a Numpy array object using `values` attribute of every pandas dataframe object. 
 
 
 
