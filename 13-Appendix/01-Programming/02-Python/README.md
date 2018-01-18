@@ -8,6 +8,7 @@ The following important libraries have been explored in addition to the text bel
 2. [MatPlotLib](./02-MatPlotLib.md)
 3. [Pandas](./03-Pandas.md)
 4. [SciPy](./04-SciPy.md)
+5. [Web Libraries](./05-urllib.md)
 
 ## Data Types
 

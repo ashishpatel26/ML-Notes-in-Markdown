@@ -61,6 +61,18 @@ It is relatively straightforward to be reading data from CSVs. One can use `pd.r
 
 In case of large datasets, data can be loaded and processed in chunks. It can be done with the help of `for` loop as in `for chunk in pd.read_csv('path_to_csv.csv', chunksize = 1000)`.
 
+### From URLs
+
+Importing a csv from a web URL can be done with the **UrlLib** package as follows
+
+```python
+from urllib.request import urlretrieve
+
+urlretrieve('http://onlinefilepath', 'local_file_path.csv')
+```
+
+And then proceed with `read_csv()` function as usual.
+
 ### From Excel
 
 1. **Reading a file**: A simple read operation over an Excel Spreadsheet can be executed by using `x = pd.ExcelFile('filepath.xlsx')`. 
