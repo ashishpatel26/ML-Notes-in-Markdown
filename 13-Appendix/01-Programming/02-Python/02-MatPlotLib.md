@@ -6,7 +6,7 @@ This is the visualization library available for plotting graphs in python. It ca
 
 ### Line based plot
 
-```
+```python
 # For graphs with lines
 plt.plot(x, y)
 plt.show()
@@ -14,7 +14,7 @@ plt.show()
 
 ### Scatter Plots
 
-```
+```python
 # For scatter plots
 plt.scatter(x, y)
 plt.show()
@@ -22,10 +22,20 @@ plt.show()
 
 ### Histograms
 
-```
+```python
 plt.hist(x)
 plt.show()
 ```
+
+### Box Plots
+
+In the example mentioned below, we pass the columns to be plotted, into the `column` argument and the column that we want to compare boxplots across, into the `by` argument.
+
+```python
+df.boxplot(column = 'column_name', by = "continent")
+```
+
+The lines that extend from a boxplot are called **whiskers**. They represent the maximums and minimums of our data, excluding the outliers. 
 
 #### Customizations
 
@@ -46,6 +56,15 @@ A pandas DataFrame can be plotted using the `plt.plot(pd_df)` function. This cal
 4. **Adding Text**: Text can be added to any point in the plot using `plt.text(x, y, "Text")` syntax.
 5. **Logarithms**: If the values are interfering with each other due to dominant behavior of a particular feature, then we can use `plt.yscale('log')` to neutralize the effect of that feature before showing the plot. 
 6. **Colors**: Colors can be added for features while plotting them using `pd_df["column_1"].plot(color = "r")`.
+
+## Statistical Significance
+
+### Types of Plots
+
+1. **Bar Plots**: It's a good idea to use bar plots for discrete data counts
+2. **Histograms**: Histograms are good for frequency analysis on continuous data columns
+3. **Box Plots**: It's a good idea to use box plots to visualize all basic summary statistics for a given column. 
+4. **Scatter Plots**: They're used to observe visually, the relationships between two or more numeric columns.
 
 ## Exporting plots
 

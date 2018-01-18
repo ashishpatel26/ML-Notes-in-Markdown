@@ -218,13 +218,14 @@ should create a new column names `new_column` in the `pd_df` dataframe with the 
 1. **Dimensions**: The `shape` attribute of any DataFrame can be used to check the dimensions.
 2. **Column Names**: The `columns` attribute of a DataFrame returns the names of all the columns.
 3. **Indices**: The atrributes `columns` and `index` can be used to retrieve the columns' and rows' index of a DataFrame.
-4. **Column Details**: Much like the `str` function in R, `info()` method can be used over any pandas DataFrame object in order to retrieve meaningful insight on columns. 
+4. **Column Details**: Much like the `str` function in R, `info()` method can be used over any pandas DataFrame object in order to retrieve meaningful insight on columns. It returns the name of the column and the number of Non Null values preent in the data column.
 5. **Statistical Summary**: Statistical summaries for pandas DataFrames can be quickly generated using the `describe()` method on any pandas DataFrame.
 6. **Interquantile range (IQR)**: Quantile ranges are useful when exploring a dataset and it can easily be determined by using `quantile()` method of Pandas dataframes. For instance, `pd_df.quantile([0.25, 0.75])` would return two values for each column in the dataset and half the data for those columns would lie between those two values. 
 7. **Range**: The range can be calculated using the `min()` and `max()` methods on any DataFrame.
 8. **Median**: The `median()` method can be used for finding out the median of any given dataset. 
 9. **Standard deviation**: The method `std()` can be used for finding out the standard deviation for any given column.
 10. **Unique objects**: Unique categories in any categorical column can be found using the `unique()` method.
+11. **Frequency Count**: The frequency  of factors in a column containing factors by using the `value_counts()` method on that column. Optionally, we could specify the `dropna` argument to this method with a Boolean Value specifying whether or not to involve null values. 
 
 ## Time Series with Pandas
 
