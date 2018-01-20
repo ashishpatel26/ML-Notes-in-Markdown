@@ -61,6 +61,19 @@ It is relatively straightforward to be reading data from CSVs. One can use `pd.r
 
 In case of large datasets, data can be loaded and processed in chunks. It can be done with the help of `for` loop as in `for chunk in pd.read_csv('path_to_csv.csv', chunksize = 1000)`.
 
+#### Globbing
+
+The process of looking for file names with specific patterns, and loading them is called **globbing**. 
+
+```python 
+import glob
+
+pattern = '*.csv'
+csv_files = glob.glob(pattern)
+```
+
+The code above, would return a list of files names, called `csv_files`. Then we can loop over this list to load all data frames. *Concatenation* can be used for merging all the datasets into one single dataset if required. 
+
 ### From URLs
 
 Importing a csv from a web URL can be done with the **UrlLib** package as follows
@@ -167,6 +180,8 @@ These are the two most commonly used methods (of Pandas Data Frame objects) for 
 1. **loc**: This method allows us to select certain rows based on labels as follows `df.loc[["row_label1", "row_label2"]]` would select the rows with these two labels. 
 	> **Note:** The use of `[[ ]]` is still necessary for making sure that the returned object is indeed a Pandas DataFrame in order to avoid any inconsistencies.
 	
+	> **WARNING**: Unlike conventional slicing (with numbers) slicing with `loc` using `'column_name_1':'column_name_2'` would include `column_name_2` in the resulting object. This is different from the index based slicing as that ignores the last index.
+	
 	It can be further extended to include only specific columns using a comma, as in `df.loc[["row_label1", "row_label2"], ["column_label1", "column_label2"]]`. This query would only return the columns with labels **column_label1** and **column_label2**.
 
 2. **iloc**: Everything remains the same except that indices are used instead of labels.
@@ -196,22 +211,91 @@ for lab, row in pd_df.iterrows():
 
 would then print, first the label, and then the contents of each row as a **Series** object.
 
-## Modifying a Dataframe
+## Manipulating Dataframes
 
-### Adding a new column 
+1. **Adding a new column**
 
-#### Single Value: loc
+	1. **Single Value(loc)**: The operator `loc` can be used to add a new column to an existing dataframe. 
+		
+		```python
+		pd_df.loc["new_column"] = 2
+		```
+		should create a new column names `new_column` in the `pd_df` dataframe with the value `2` on all rows.
+	2. **Mutation(apply)**: `pd_df["new_column"] = pd_df["old_column"].apply(len)` would add a new column with the length of values present in currently existing `old_column`.
+ 
+2. **Tidying Data**
 
-The operator `loc` can be used to add a new column to an existing dataframe. 
+	1. **Melting Dataframes**: If columns contain values instead of variables, then we would need to use the `melt()` function. It can be used as 
+	
+		```python
+		pd.melt(	frame = df, 
+					id_vars = 'identifier_column', 
+					value_vars = ['column1', 'column2'],
+					var_name = 'new_key_column_name',
+					value_name = 'new_value_column_name')
+		```
+		
+		where `id_vars` is the column/set of columns that contain the ID, and `value_vars` are the columns that need to be merged.
+		
+	2. **Pivoting Data**: It's the opposite process of melting data. It can be used to change a column into multiple columns as follows:
+	
+		```python
+		pd.pivot(	frame = df, 
+					index = 'index_column', 
+					columns = 'key_column',
+					values = 'value_column')	
+		```
+		
+		This would work just fine if we're dealing with perfect data, i.e. there are no duplicates. If there are duplicates though, then we would need to use the `pivot_table()` method in order to deal with them. It is done with one additional parameter, and with , as shown below
+		
+		```python
+		df.pivot_table(	index = 'index_column', 
+							columns = 'key_column',
+							values = 'value_column',
+							aggfunction = np.mean)	
+		```
+		
+		where we are telling Pandas to mean the duplicate numeric values using the `aggfunction` attribute. 
+		
+		> `reset_index()` method is used on the data frames that have been pivoted in order to flatten them2
+		
+	3. **Concatenating Data**: A list of dataframes can be passed to the `pd.concat()` function for concatenating data.
+	
+		The `axis = 1` argument can be used for **column wise concatenation**.
+		
+		> **Note:** We need to reset the index labels by passing the `ignore_index=True` argument to the `pd.concat()` function so that there are no duplicate indices.
+	
+3. **Merging Data**
 
-```
-pd_df.loc["new_column"] = 2
-```
-should create a new column names `new_column` in the `pd_df` dataframe with the value `2` on all rows.
+	We can use the Pandas equivalent of **join** to merge two dataframes as follows
+	
+	```python
+	pd.merge(		left = left_df, right = right_df,
+					on = None, 
+					left_on = 'left_df_column_name', 
+					right_on = 'right_df_column_name')
+	```
+	
+	If the column name is same on both left and right dataframes, then only the `on` parameter can be specified in the function above and the other factors will be redundant. 
+	
+	There are multiple kinds of merges that can happen in Pandas:
+	
+	1. **One to One**: Both the keys take a value only 1 time on both sides
+	2. **Many to One/ One to Many**: This merge happens when there are more than one duplicates on either of the tables. In this case, the value from the other key will be duplicated to fill in the missing repition.
 
-#### Mutation: apply
+4. **Data Type Cleaning**
+	
+	We can observe the datatypes of various columns by viewing the `dtypes` attribute of the dataframe that we want to check these details for.
+	
+	1. **Converting Data Types**: The data types can be converted using the `astype()` method of any column. 
+	2. **Convert to categorical column**: We would often want to convert the column type to a categorical variable, we can pass the `category` method of any column to convert it into a categorical column.
+	3. **Convert to Numeric**: If there is a column that should be of numeric type but is not, because of mistreated data, or erroneous characters in the data, we can use the `pd.to_numeric(df['column_name'])` function and pass it the additional argument `errors = 'coerce'` in order to convert all that erroneous data to `NaN` with ease.
+	4. **Drop NA**: If there are really few data points that have missing values in them, we can lose them with the `dropna()` method. 
+	5. **Recode Missing Values**: We can customize the missing values using the `fillna('missing_value_placeholder')` method of every data frame object and the columns. 
+	6. **String Cleaning**: The `re` library for regular expressions gives us a neat way to do string manipulations. We can formulate regular expression formalue like `x = re.compile('\d{3}-\d{3}-\d{4}')`. This would create a new regex object called `x` which has a method `match()`. We can pass any string to this `match()` method to match it with our regular expression and it returns a boolean `True` if the string matches. 
+	7. **Duplicate Data**: There may be mulitple rows where redundant partial or complete row information is stored and these may be sorted out by using the `drop_duplicates()` methods of the data frame object.
 
-`pd_df["new_column"] = pd_df["old_column"].apply(len)` would add a new column with the length of values present in currently existing `old_column`.
+5. ****
 
 ## Exploring Data
 
@@ -226,6 +310,7 @@ should create a new column names `new_column` in the `pd_df` dataframe with the 
 9. **Standard deviation**: The method `std()` can be used for finding out the standard deviation for any given column.
 10. **Unique objects**: Unique categories in any categorical column can be found using the `unique()` method.
 11. **Frequency Count**: The frequency  of factors in a column containing factors by using the `value_counts()` method on that column. Optionally, we could specify the `dropna` argument to this method with a Boolean Value specifying whether or not to involve null values. 
+12. **Data Type**: We can explore the data type for any column that we want to, by having a look at the values of the attribute `dtypes` for each column in data frame.
 
 ## Time Series with Pandas
 
