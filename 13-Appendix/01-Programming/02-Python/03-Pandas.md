@@ -189,6 +189,11 @@ These are the two most commonly used methods (of Pandas Data Frame objects) for 
 
 2. **iloc**: Everything remains the same except that indices are used instead of labels.
 
+### Filtering
+
+1. **any and all**: `any()` or `all()` methods are helpful in filtering the columns that have certain properties. They're usually used in combination with `isnull()` or `notnull()` methods.
+2. **Drop na**: The `dropna()` method can be used on data frames to filter out rows with any or all na values based on the argument `how='any'` or `how='all'`.
+
 ### Iterations
 
 #### Columns
@@ -298,7 +303,9 @@ would then print, first the label, and then the contents of each row as a **Seri
 	6. **String Cleaning**: The `re` library for regular expressions gives us a neat way to do string manipulations. We can formulate regular expression formalue like `x = re.compile('\d{3}-\d{3}-\d{4}')`. This would create a new regex object called `x` which has a method `match()`. We can pass any string to this `match()` method to match it with our regular expression and it returns a boolean `True` if the string matches. 
 	7. **Duplicate Data**: There may be mulitple rows where redundant partial or complete row information is stored and these may be sorted out by using the `drop_duplicates()` methods of the data frame object.
 
-5. ****
+5. **Vectorized Operations**: Whenever possible, it is recommended to use vectorized computations rather than going for custom solutions. 
+	1. **Operating on Strings**: There are vectorized methods in the `str` attribute of every dataframe column that contains strings. These functions enable us to do quick vectorized transformations on the df. 
+	2. **Map Method**: There are often times when the `str` or other vectorized attributes will not be present. In such cases the `map()` method can be used for mapping operation succinctly. 
 
 ## Exploring Data
 
