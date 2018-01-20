@@ -178,6 +178,9 @@ If alternative slicing methods are required then it can be achieved as `pd_df[::
 These are the two most commonly used methods (of Pandas Data Frame objects) for selecting or subsetting data. The **loc** technique operates on **labels** and the **iloc** technique relies on **integer positions**.
 
 1. **loc**: This method allows us to select certain rows based on labels as follows `df.loc[["row_label1", "row_label2"]]` would select the rows with these two labels. 
+
+	One trick for range of slicing is to use `df.loc[["row_label2", "row_label1":-1]]` for reverse slicing. It would select rows from `row_label1` to `row_label2` but in reverse order.
+	
 	> **Note:** The use of `[[ ]]` is still necessary for making sure that the returned object is indeed a Pandas DataFrame in order to avoid any inconsistencies.
 	
 	> **WARNING**: Unlike conventional slicing (with numbers) slicing with `loc` using `'column_name_1':'column_name_2'` would include `column_name_2` in the resulting object. This is different from the index based slicing as that ignores the last index.
