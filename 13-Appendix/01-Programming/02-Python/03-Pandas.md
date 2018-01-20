@@ -307,6 +307,32 @@ would then print, first the label, and then the contents of each row as a **Seri
 	1. **Operating on Strings**: There are vectorized methods in the `str` attribute of every dataframe column that contains strings. These functions enable us to do quick vectorized transformations on the df. 
 	2. **Map Method**: There are often times when the `str` or other vectorized attributes will not be present. In such cases the `map()` method can be used for mapping operation succinctly. 
 
+6. **Assigning Index**: We can designate a column, or any other Numpy array of the same length to be the index by assigning it to the `df.index` attribute. 
+
+	1. **Index Name**: Index by default, won't have name associated with it, but one can assign a name to the index by assigning it to the attribute `df.index.name`. The similar operation can be carried for assigning an index name to the column names using the `df.columns.name` attribute.
+	2. **Using Tuples as Index**: Often we would need to set two or more columns as index (much like composite keys in SQL). This can be done using Tuples. They list of columns that we need to be set as the composite index of a dataframe can be passed to the `set_index(["composite_key_column_1", "composite_key_column_2"])` to achieve this. It is called the **MultiIndex**.
+	3. **Sorting Index**: If we are using a **Multiindex** as shown above, we can also use the `sort_index()` method to sort the index and display it in a more organized manner. 
+	
+		> This allows for **fancy indexing**, i.e. calling `df.loc[(["index_1_low" : "index_1_high"], "index_2"), :]` would select all the columns for rows that belong in the range provided for `index_1` and all sub rows belonging to `index_2`. 
+		
+		> The `slice()` function must be used for slicing both indexes.
+	4.  **Stacking and Unstacking Index**: We might want to remove some of the indexes from the multi level indexes to be columns. To do this, we use the method `unstack()` with the `level="index_name_to_remove"`. This will give us a hierarchical data frame and this effect can be reversed using the `stack()` method in the same format.
+	5. **Swapping Index Levels**: The index levels can be swapped using the method `swaplevel(0, 1)` on any dataframe. This would essentially exchange the hierarchical arrangement of indices and running `sort_index()` right after it would do the rest.
+  
+7. **Aggregation/Reduction**: The `groupby()` method is the Python equivalent of R's `aggregate()` method. It allows us to create virtual groups within the dataframe. It is usually chained together with other aggregation functions like `sum()`, `count()`, `unique()` etc. to produce meaningful results. We can use a typical grouping operation as follows:
+
+	```python
+	titanic.groupby(['pclass', 'sex'])['survived'].count()
+	```
+	
+	There is also the option of finding out multiple aggregation details on the grouped dataframe:
+	1. **Multiple Aggregations**: We can use `titanic.groupby('pclass').agg(['mean', 'sum'])` to compute multiple aggregation values at once.
+	2. **Custom Aggregations**: We can pass custom functions as arguments to `agg()` method that would take `Series`  objects as inputs and produce results from them. When used, they would receive as inputs multiple `Series` objects (one for each group) and would produce grouped results like other functions.
+ 	3. **Differnet Agg on Different Columns**: We can pass a `dictionary` object to `agg()` method, as an argument, which would contain column names as keys and corresponding aggregation functions to apply as values. This allows us to compute different statistics for the same grouping of objects, upon different columns.
+ 
+ 8. **Transformation**: Transformation functions are used to transform one or more columns after they have been grouped and is usually chained after the `groupby()` method as `transform(transformation_function)`. This transformation method passes the Series to `transform_function()` which could be a user defined function or a builtin one, which then returns a transformed series of a conforming size. 
+ 9. **Grouping and Filtering**: We can use the dictionary object created by `groupby()` method to loop over and therefore filter only the rows of interest.
+ 
 ## Exploring Data
 
 1. **Dimensions**: The `shape` attribute of any DataFrame can be used to check the dimensions.
