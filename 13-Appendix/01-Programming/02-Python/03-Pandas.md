@@ -61,6 +61,19 @@ It is relatively straightforward to be reading data from CSVs. One can use `pd.r
 
 In case of large datasets, data can be loaded and processed in chunks. It can be done with the help of `for` loop as in `for chunk in pd.read_csv('path_to_csv.csv', chunksize = 1000)`.
 
+#### Globbing
+
+The process of looking for file names with specific patterns, and loading them is called **globbing**. 
+
+```python 
+import glob
+
+pattern = '*.csv'
+csv_files = glob.glob(pattern)
+```
+
+The code above, would return a list of files names, called `csv_files`. Then we can loop over this list to load all data frames. *Concatenation* can be used for merging all the datasets into one single dataset if required. 
+
 ### From URLs
 
 Importing a csv from a web URL can be done with the **UrlLib** package as follows
@@ -165,11 +178,21 @@ If alternative slicing methods are required then it can be achieved as `pd_df[::
 These are the two most commonly used methods (of Pandas Data Frame objects) for selecting or subsetting data. The **loc** technique operates on **labels** and the **iloc** technique relies on **integer positions**.
 
 1. **loc**: This method allows us to select certain rows based on labels as follows `df.loc[["row_label1", "row_label2"]]` would select the rows with these two labels. 
+
+	One trick for range of slicing is to use `df.loc[["row_label2", "row_label1":-1]]` for reverse slicing. It would select rows from `row_label1` to `row_label2` but in reverse order.
+	
 	> **Note:** The use of `[[ ]]` is still necessary for making sure that the returned object is indeed a Pandas DataFrame in order to avoid any inconsistencies.
+	
+	> **WARNING**: Unlike conventional slicing (with numbers) slicing with `loc` using `'column_name_1':'column_name_2'` would include `column_name_2` in the resulting object. This is different from the index based slicing as that ignores the last index.
 	
 	It can be further extended to include only specific columns using a comma, as in `df.loc[["row_label1", "row_label2"], ["column_label1", "column_label2"]]`. This query would only return the columns with labels **column_label1** and **column_label2**.
 
 2. **iloc**: Everything remains the same except that indices are used instead of labels.
+
+### Filtering
+
+1. **any and all**: `any()` or `all()` methods are helpful in filtering the columns that have certain properties. They're usually used in combination with `isnull()` or `notnull()` methods.
+2. **Drop na**: The `dropna()` method can be used on data frames to filter out rows with any or all na values based on the argument `how='any'` or `how='all'`.
 
 ### Iterations
 
@@ -196,23 +219,120 @@ for lab, row in pd_df.iterrows():
 
 would then print, first the label, and then the contents of each row as a **Series** object.
 
-## Modifying a Dataframe
+## Manipulating Dataframes
 
-### Adding a new column 
+1. **Adding a new column**
 
-#### Single Value: loc
+	1. **Single Value(loc)**: The operator `loc` can be used to add a new column to an existing dataframe. 
+		
+		```python
+		pd_df.loc["new_column"] = 2
+		```
+		should create a new column names `new_column` in the `pd_df` dataframe with the value `2` on all rows.
+	2. **Mutation(apply)**: `pd_df["new_column"] = pd_df["old_column"].apply(len)` would add a new column with the length of values present in currently existing `old_column`.
+ 
+2. **Tidying Data**
 
-The operator `loc` can be used to add a new column to an existing dataframe. 
+	1. **Melting Dataframes**: If columns contain values instead of variables, then we would need to use the `melt()` function. It can be used as 
+	
+		```python
+		pd.melt(	frame = df, 
+					id_vars = 'identifier_column', 
+					value_vars = ['column1', 'column2'],
+					var_name = 'new_key_column_name',
+					value_name = 'new_value_column_name')
+		```
+		
+		where `id_vars` is the column/set of columns that contain the ID, and `value_vars` are the columns that need to be merged.
+		
+	2. **Pivoting Data**: It's the opposite process of melting data. It can be used to change a column into multiple columns as follows:
+	
+		```python
+		pd.pivot(	frame = df, 
+					index = 'index_column', 
+					columns = 'key_column',
+					values = 'value_column')	
+		```
+		
+		This would work just fine if we're dealing with perfect data, i.e. there are no duplicates. If there are duplicates though, then we would need to use the `pivot_table()` method in order to deal with them. It is done with one additional parameter, and with , as shown below
+		
+		```python
+		df.pivot_table(	index = 'index_column', 
+							columns = 'key_column',
+							values = 'value_column',
+							aggfunction = np.mean)	
+		```
+		
+		where we are telling Pandas to mean the duplicate numeric values using the `aggfunction` attribute. 
+		
+		> `reset_index()` method is used on the data frames that have been pivoted in order to flatten them2
+		
+	3. **Concatenating Data**: A list of dataframes can be passed to the `pd.concat()` function for concatenating data.
+	
+		The `axis = 1` argument can be used for **column wise concatenation**.
+		
+		> **Note:** We need to reset the index labels by passing the `ignore_index=True` argument to the `pd.concat()` function so that there are no duplicate indices.
+	
+3. **Merging Data**
 
-```
-pd_df.loc["new_column"] = 2
-```
-should create a new column names `new_column` in the `pd_df` dataframe with the value `2` on all rows.
+	We can use the Pandas equivalent of **join** to merge two dataframes as follows
+	
+	```python
+	pd.merge(		left = left_df, right = right_df,
+					on = None, 
+					left_on = 'left_df_column_name', 
+					right_on = 'right_df_column_name')
+	```
+	
+	If the column name is same on both left and right dataframes, then only the `on` parameter can be specified in the function above and the other factors will be redundant. 
+	
+	There are multiple kinds of merges that can happen in Pandas:
+	
+	1. **One to One**: Both the keys take a value only 1 time on both sides
+	2. **Many to One/ One to Many**: This merge happens when there are more than one duplicates on either of the tables. In this case, the value from the other key will be duplicated to fill in the missing repition.
 
-#### Mutation: apply
+4. **Data Type Cleaning**
+	
+	We can observe the datatypes of various columns by viewing the `dtypes` attribute of the dataframe that we want to check these details for.
+	
+	1. **Converting Data Types**: The data types can be converted using the `astype()` method of any column. 
+	2. **Convert to categorical column**: We would often want to convert the column type to a categorical variable, we can pass the `category` method of any column to convert it into a categorical column.
+	3. **Convert to Numeric**: If there is a column that should be of numeric type but is not, because of mistreated data, or erroneous characters in the data, we can use the `pd.to_numeric(df['column_name'])` function and pass it the additional argument `errors = 'coerce'` in order to convert all that erroneous data to `NaN` with ease.
+	4. **Drop NA**: If there are really few data points that have missing values in them, we can lose them with the `dropna()` method. 
+	5. **Recode Missing Values**: We can customize the missing values using the `fillna('missing_value_placeholder')` method of every data frame object and the columns. 
+	6. **String Cleaning**: The `re` library for regular expressions gives us a neat way to do string manipulations. We can formulate regular expression formalue like `x = re.compile('\d{3}-\d{3}-\d{4}')`. This would create a new regex object called `x` which has a method `match()`. We can pass any string to this `match()` method to match it with our regular expression and it returns a boolean `True` if the string matches. 
+	7. **Duplicate Data**: There may be mulitple rows where redundant partial or complete row information is stored and these may be sorted out by using the `drop_duplicates()` methods of the data frame object.
 
-`pd_df["new_column"] = pd_df["old_column"].apply(len)` would add a new column with the length of values present in currently existing `old_column`.
+5. **Vectorized Operations**: Whenever possible, it is recommended to use vectorized computations rather than going for custom solutions. 
+	1. **Operating on Strings**: There are vectorized methods in the `str` attribute of every dataframe column that contains strings. These functions enable us to do quick vectorized transformations on the df. 
+	2. **Map Method**: There are often times when the `str` or other vectorized attributes will not be present. In such cases the `map()` method can be used for mapping operation succinctly. 
 
+6. **Assigning Index**: We can designate a column, or any other Numpy array of the same length to be the index by assigning it to the `df.index` attribute. 
+
+	1. **Index Name**: Index by default, won't have name associated with it, but one can assign a name to the index by assigning it to the attribute `df.index.name`. The similar operation can be carried for assigning an index name to the column names using the `df.columns.name` attribute.
+	2. **Using Tuples as Index**: Often we would need to set two or more columns as index (much like composite keys in SQL). This can be done using Tuples. They list of columns that we need to be set as the composite index of a dataframe can be passed to the `set_index(["composite_key_column_1", "composite_key_column_2"])` to achieve this. It is called the **MultiIndex**.
+	3. **Sorting Index**: If we are using a **Multiindex** as shown above, we can also use the `sort_index()` method to sort the index and display it in a more organized manner. 
+	
+		> This allows for **fancy indexing**, i.e. calling `df.loc[(["index_1_low" : "index_1_high"], "index_2"), :]` would select all the columns for rows that belong in the range provided for `index_1` and all sub rows belonging to `index_2`. 
+		
+		> The `slice()` function must be used for slicing both indexes.
+	4.  **Stacking and Unstacking Index**: We might want to remove some of the indexes from the multi level indexes to be columns. To do this, we use the method `unstack()` with the `level="index_name_to_remove"`. This will give us a hierarchical data frame and this effect can be reversed using the `stack()` method in the same format.
+	5. **Swapping Index Levels**: The index levels can be swapped using the method `swaplevel(0, 1)` on any dataframe. This would essentially exchange the hierarchical arrangement of indices and running `sort_index()` right after it would do the rest.
+  
+7. **Aggregation/Reduction**: The `groupby()` method is the Python equivalent of R's `aggregate()` method. It allows us to create virtual groups within the dataframe. It is usually chained together with other aggregation functions like `sum()`, `count()`, `unique()` etc. to produce meaningful results. We can use a typical grouping operation as follows:
+
+	```python
+	titanic.groupby(['pclass', 'sex'])['survived'].count()
+	```
+	
+	There is also the option of finding out multiple aggregation details on the grouped dataframe:
+	1. **Multiple Aggregations**: We can use `titanic.groupby('pclass').agg(['mean', 'sum'])` to compute multiple aggregation values at once.
+	2. **Custom Aggregations**: We can pass custom functions as arguments to `agg()` method that would take `Series`  objects as inputs and produce results from them. When used, they would receive as inputs multiple `Series` objects (one for each group) and would produce grouped results like other functions.
+ 	3. **Differnet Agg on Different Columns**: We can pass a `dictionary` object to `agg()` method, as an argument, which would contain column names as keys and corresponding aggregation functions to apply as values. This allows us to compute different statistics for the same grouping of objects, upon different columns.
+ 
+ 8. **Transformation**: Transformation functions are used to transform one or more columns after they have been grouped and is usually chained after the `groupby()` method as `transform(transformation_function)`. This transformation method passes the Series to `transform_function()` which could be a user defined function or a builtin one, which then returns a transformed series of a conforming size. 
+ 9. **Grouping and Filtering**: We can use the dictionary object created by `groupby()` method to loop over and therefore filter only the rows of interest.
+ 
 ## Exploring Data
 
 1. **Dimensions**: The `shape` attribute of any DataFrame can be used to check the dimensions.
@@ -226,6 +346,7 @@ should create a new column names `new_column` in the `pd_df` dataframe with the 
 9. **Standard deviation**: The method `std()` can be used for finding out the standard deviation for any given column.
 10. **Unique objects**: Unique categories in any categorical column can be found using the `unique()` method.
 11. **Frequency Count**: The frequency  of factors in a column containing factors by using the `value_counts()` method on that column. Optionally, we could specify the `dropna` argument to this method with a Boolean Value specifying whether or not to involve null values. 
+12. **Data Type**: We can explore the data type for any column that we want to, by having a look at the values of the attribute `dtypes` for each column in data frame.
 
 ## Time Series with Pandas
 
