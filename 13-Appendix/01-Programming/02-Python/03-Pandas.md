@@ -221,6 +221,8 @@ would then print, first the label, and then the contents of each row as a **Seri
 
 ## Manipulating Dataframes
 
+> NOT COMPLETE: would need to visit more websites and research materials to complete manipulatio
+
 1. **Adding a new column**
 
 	1. **Single Value(loc)**: The operator `loc` can be used to add a new column to an existing dataframe. 
@@ -332,6 +334,7 @@ would then print, first the label, and then the contents of each row as a **Seri
  
  8. **Transformation**: Transformation functions are used to transform one or more columns after they have been grouped and is usually chained after the `groupby()` method as `transform(transformation_function)`. This transformation method passes the Series to `transform_function()` which could be a user defined function or a builtin one, which then returns a transformed series of a conforming size. 
  9. **Grouping and Filtering**: We can use the dictionary object created by `groupby()` method to loop over and therefore filter only the rows of interest.
+ 10. **Sorting**: We can sort the values in any column by using the `sort_values(ascending = False)` method available for columns of all dataframe objects.
  
 ## Exploring Data
 
@@ -347,6 +350,7 @@ would then print, first the label, and then the contents of each row as a **Seri
 10. **Unique objects**: Unique categories in any categorical column can be found using the `unique()` method.
 11. **Frequency Count**: The frequency  of factors in a column containing factors by using the `value_counts()` method on that column. Optionally, we could specify the `dropna` argument to this method with a Boolean Value specifying whether or not to involve null values. 
 12. **Data Type**: We can explore the data type for any column that we want to, by having a look at the values of the attribute `dtypes` for each column in data frame.
+13. **Index of Max**: The `idxmax()` and `idxmin()` methods allow us to find the row or column labels where the maximum or minimum values are located with the help of `axis = 'columns'` for the column labels, and these methods default to `min()` so we won't have to specify anything there. 
 
 ## Time Series with Pandas
 
