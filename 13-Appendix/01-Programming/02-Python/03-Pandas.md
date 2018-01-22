@@ -273,7 +273,7 @@ would then print, first the label, and then the contents of each row as a **Seri
 	
 		The `axis = 1` argument can be used for **column wise concatenation**.
 		
-		> **Note:** We need to reset the index labels by passing the `ignore_index=True` argument to the `pd.concat()` function so that there are no duplicate indices.
+		> **Note:** We need to reset the index labels by passing the `ignore_index=True` argument to the `pd.concat()` function so that there are no duplicate indices in order to avoid using `reset_index()` method later.
 	
 3. **Merging Data**
 
@@ -332,10 +332,13 @@ would then print, first the label, and then the contents of each row as a **Seri
 	2. **Custom Aggregations**: We can pass custom functions as arguments to `agg()` method that would take `Series`  objects as inputs and produce results from them. When used, they would receive as inputs multiple `Series` objects (one for each group) and would produce grouped results like other functions.
  	3. **Differnet Agg on Different Columns**: We can pass a `dictionary` object to `agg()` method, as an argument, which would contain column names as keys and corresponding aggregation functions to apply as values. This allows us to compute different statistics for the same grouping of objects, upon different columns.
  
- 8. **Transformation**: Transformation functions are used to transform one or more columns after they have been grouped and is usually chained after the `groupby()` method as `transform(transformation_function)`. This transformation method passes the Series to `transform_function()` which could be a user defined function or a builtin one, which then returns a transformed series of a conforming size. 
- 9. **Grouping and Filtering**: We can use the dictionary object created by `groupby()` method to loop over and therefore filter only the rows of interest.
- 10. **Sorting**: We can sort the values in any column by using the `sort_values(ascending = False)` method available for columns of all dataframe objects.
- 
+8. **Transformation**: Transformation functions are used to transform one or more columns after they have been grouped and is usually chained after the `groupby()` method as `transform(transformation_function)`. This transformation method passes the Series to `transform_function()` which could be a user defined function or a builtin one, which then returns a transformed series of a conforming size. 
+9. **Grouping and Filtering**: We can use the dictionary object created by `groupby()` method to loop over and therefore filter only the rows of interest.
+10. **Sorting**: We can sort the values in any column by using the `sort_values(ascending = False)` method available for columns of all dataframe objects.
+11. **Mathematical Operations**: There are various mathematical operations available for our use.
+	1. **pct_change()**: This method can used to detect percentage change over a particular column or aggregation values.
+	2. **add()**: This method can be used to add two Series with corresponding row indices as `a.add(b)`. This would add the series `a` and `b`. However, if there are non matching indices, i.e. an index in `a` does not have any corresponding index in `b`, then this could return an `NaN` value. We can change this by changing the default non existent value by passing the argument `fill_value` into the `add()` method. This method is chainable so more than one Series can be added in a single line. 
+
 ## Exploring Data
 
 1. **Dimensions**: The `shape` attribute of any DataFrame can be used to check the dimensions.
