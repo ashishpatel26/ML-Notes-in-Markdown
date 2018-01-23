@@ -56,6 +56,7 @@ It is relatively straightforward to be reading data from CSVs. One can use `pd.r
 	
 6. **Handling comments**: If the file contains comments within the data, they can be distinguished using the delimiter passed to the `comment` argument as shown in `pd.read_csv('path_to_csv.csv', comment='#')`
 7. **Delimiter**: The delimiter in while reading a csv to a Pandas DataFrame object can be set using `sep` argument
+8. **Skipping rows**: Rows can be skipped while reading a csv file by using `skiprows` argument in combination with `header` argument.
 
 #### Chunkwise loading
 
@@ -298,7 +299,7 @@ would then print, first the label, and then the contents of each row as a **Seri
 	We can observe the datatypes of various columns by viewing the `dtypes` attribute of the dataframe that we want to check these details for.
 	
 	1. **Converting Data Types**: The data types can be converted using the `astype()` method of any column. 
-	2. **Convert to categorical column**: We would often want to convert the column type to a categorical variable, we can pass the `category` method of any column to convert it into a categorical column.
+	2. **Convert to categorical column**: We would often want to convert the column type to a categorical variable, we can pass the `'category'` argument to the `astype()` method of any column to convert it into a categorical column.
 	3. **Convert to Numeric**: If there is a column that should be of numeric type but is not, because of mistreated data, or erroneous characters in the data, we can use the `pd.to_numeric(df['column_name'])` function and pass it the additional argument `errors = 'coerce'` in order to convert all that erroneous data to `NaN` with ease.
 	4. **Drop NA**: If there are really few data points that have missing values in them, we can lose them with the `dropna()` method. 
 	5. **Recode Missing Values**: We can customize the missing values using the `fillna('missing_value_placeholder')` method of every data frame object and the columns. 
