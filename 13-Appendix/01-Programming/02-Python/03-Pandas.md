@@ -355,6 +355,7 @@ would then print, first the label, and then the contents of each row as a **Seri
 11. **Frequency Count**: The frequency  of factors in a column containing factors by using the `value_counts()` method on that column. Optionally, we could specify the `dropna` argument to this method with a Boolean Value specifying whether or not to involve null values. 
 12. **Data Type**: We can explore the data type for any column that we want to, by having a look at the values of the attribute `dtypes` for each column in data frame.
 13. **Index of Max**: The `idxmax()` and `idxmin()` methods allow us to find the row or column labels where the maximum or minimum values are located with the help of `axis = 'columns'` for the column labels, and these methods default to `min()` so we won't have to specify anything there. 
+14. **Indexes of Non NULL Values**: One can get the indices of non null values by using the `notnull()` method available for Series objects in Pandas.
 
 ## Time Series with Pandas
 
@@ -400,6 +401,27 @@ would then print, first the label, and then the contents of each row as a **Seri
 ### Moving Averages
 
 We can calculate moving averages, that allows us to focus on long term trends instead of being stuck in short term fluctuations. We do so by using the `rolling()` method as shown in `time_series.rolling(window=24).mean()` which would compute **new values for each point** but it will still be hourly data. This would instead set the value of that point as an average of trailing 24 datapoints, hence making it smoother. 
+
+```
+
+"""
+for key in keys['order']:
+  key_weight = keys['weights'][key] # Weight of the key
+  key_data = keys['data'][key]
+  if key_data['type'] == "singular":
+    print("Jacuzzi")
+  else:
+    for section in key_data['order']: 
+      section_weight = key_data['weights'][section]
+      section_data = key_data['data'][section]
+      
+      for unit in section_data:
+        user_df[key+'_'+section+'_'+unit] = user_data_raw[section_data[unit]['user']].notnull().astype(int)
+        
+    
+print(user_df.columns)
+"""
+```
 
 
 	
