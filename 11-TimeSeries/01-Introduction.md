@@ -51,3 +51,29 @@ A few key features to remember when modelling time series are as follows:
 6. we also use Moving Averages (also known as filtering or smoothing) because it tries to remove the seasonal component of time series.
 7. We would often also need to transform the data before it can be used. The most common time we need to do transformations in Time Series is when we have an **increasing seasonal variation** because that represents a multiplicative model, which can be hard to explain. 
 
+# Autocorrelation
+
+The general concept of dependence on the past is called autocorrelation in statistics. If we are going to use regression models for mdoeling non-stationary data, we need to ensure that they satisfy the [underlying assumptions necessary](./01-Regression/README.md) for regression models, i.e. normally distributed, zero mean, constant variance in the residual plot.
+
+## Variance, Covariance and Correlation
+
+### Variance
+The population variance denoted by ![population_variance](http://mathurl.com/yahkk9wb.png) is calculated using the sample variance. For any given sample Y, it's variance is calculated as follows:
+
+![var_eq1](http://mathurl.com/ychzr2lm.png)
+
+> Note: Variance is a special case of covariance, it just means how the sample of observations varies with itself.
+
+### Covariance
+
+It tells us how two varaibles vary with each other. Simply put, are the large values of X related to large values in Y or are the large values in X related to small values in Y? It is calculated as follows:
+
+![covariance_equation](http://mathurl.com/y9edhbnx.png)
+
+### Correlation
+
+Standardized covariance is called **correlation**, therefore it always lies between -1 and 1. It is represented as 
+
+![sd_eq1](http://mathurl.com/yatuzo44.png) 
+
+where ![sd_x](http://mathurl.com/y9afaslq.png) represented the standard deviation for x and ![sd_y](http://mathurl.com/y8zvoe5j.png) represents the standard deviation for y.
