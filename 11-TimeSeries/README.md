@@ -5,6 +5,7 @@ Any data recorded at fixed interval of time over a certain period of time, is ca
 This chapter contains the following topics:
 
 1. [Introduction](./01-Introduction.md)
+
     a. [Key Terms](./01-Introduction.md#key-terms)
     b. [Types of Time Series](./01-Introduction.md#types-of-time-series)
     c. [Features](./01-Introduction.md#features-of-time-series)
