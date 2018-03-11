@@ -10,7 +10,7 @@ In order to perform regression on any dataset, it must satisfy the following ass
 
 1. **Normality**: The erros are assumed to be normally distributed 
 2. **Independent**: The errors must be independent of each other
-3. **Mean and Variance**: They must have zero mean and constant variance
+3. **Mean and Variance**: They must have zero mean and constant variance (this property of having a **constant variance** is also called **homoscedasticity**
 
 These assumptions are usually verified using Q-Q Plots, S-W test etc.
 
