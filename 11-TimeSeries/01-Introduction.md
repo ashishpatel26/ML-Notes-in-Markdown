@@ -120,7 +120,13 @@ The following methods are used for detecting autocorrelation:
 
 ### Autocorrelation Function (ACF)
 
-This function does the tests for all possible lags and plots them at the same time as well. It is very time efficient for this reason.
+This function does the tests for all possible lags and plots them at the same time as well. It is very time efficient for this reason. 
+
+### STL Analysis
+
+We can also do an STL analysis which would give us the seasonality, trend and remainder plots for any time series. 
+
+> NOTE: If you find that the range of the seasonality plot is more or less the same as the range of the remained plot, then there isn't much seasonality. The STL is designed to look for **seasonality so it will always give you a seasonality plot** and it'll be for the person reading to determine whether there is actual seasonlity or not.  
 
 # Time Series Regression
 
