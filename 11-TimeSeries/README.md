@@ -7,5 +7,9 @@ This chapter contains the following topics:
 1. [Introduction](./01-Introduction.md)
 
     a. [Key Terms](./01-Introduction.md#key-terms)
+    b. [Types of Time Series](./01-Introduction.md#types-of-time-series)
+    c. [Features](./01-Introduction.md#features-of-time-series)
+    d. [Autocorrelation](./01-Introduction.md#autocorrelation)
+
 2. [Implementation in R](./01-TimeSeriesInR.md)
 3. Implementation in Python
