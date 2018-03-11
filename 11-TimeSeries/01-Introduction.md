@@ -77,3 +77,56 @@ Standardized covariance is called **correlation**, therefore it always lies betw
 ![sd_eq1](http://mathurl.com/yatuzo44.png) 
 
 where ![sd_x](http://mathurl.com/y9afaslq.png) represented the standard deviation for x and ![sd_y](http://mathurl.com/y8zvoe5j.png) represents the standard deviation for y.
+
+
+Autocorrelation takes place for univariate time series.
+
+### Sample Autovariance
+
+Covariance is with respect to itself in this case, for the past values that have occurred in time and is represented as follows.
+
+![ac_corr](http://mathurl.com/ycrptg55.png)
+
+### Sample Autocovariance
+
+In a univariate time series, the covariance between two observations *k* time periods apart (lag *k*), is given by
+
+![ac_cov](http://mathurl.com/yapbrtuj.png)
+
+### Sample Autocorrelation
+
+Standardized autocovariance is equal to sample autocorrelation (*k* time periods apart) which is denoted by ![ac_cor](http://mathurl.com/yawwkcuf.png) and is given as follows:
+
+![ac_cor](http://mathurl.com/ya862ny5.png)
+
+## Detecting Autocorrelation
+
+There are two types of autocorrelation that we look for: 
+
+1. Positive Autocorrelation: Clustering in Residuals
+2. Negative Autocorrelation: Oscillations in Residuals (this is rare)
+
+The following methods are used for detecting autocorrelation:
+
+### Use the tests
+
+#### Durbin Watson Test (usually used in Econometrics)
+
+#### Plot of Current vs Lagged residuals
+
+#### Runs (Geary) Test
+
+#### Chi-Squared Test of Independence of Residuals
+
+### Autocorrelation Function (ACF)
+
+This function does the tests for all possible lags and plots them at the same time as well. It is very time efficient for this reason.
+
+# Time Series Regression
+
+There are certain key points, that need to be considered when we do, Time Series Regression. They are as follows:
+
+1. Check if time ordered residuals are independent
+2. White Noise: Time Series of independent residuals (i.e. independent and identically distributed (*iid*), normal with 0 mean and constant variance ![](http://mathurl.com/abetvkx.png)) It is given by ![white_noise](http://mathurl.com/y8sbreq5.png)
+3. When doing regression models of nonstationary time series, check for autocorrelation in the residual series, because **a pattern in the residual series is equivalent to pattern in the data not captured by our model**.
+
