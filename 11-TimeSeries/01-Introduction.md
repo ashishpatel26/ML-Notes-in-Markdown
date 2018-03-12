@@ -124,7 +124,7 @@ This function does the tests for all possible lags and plots them at the same ti
 
 ### STL Analysis
 
-We can also do an STL analysis which would give us the seasonality, trend and remainder plots for any time series. 
+We can also do an STL analysis which would give us the seasonality, trend and remainder plots for any time series. A strong trend will always show high levels of autocorrelation. 
 
 > NOTE: If you find that the range of the seasonality plot is more or less the same as the range of the remained plot, then there isn't much seasonality. The STL is designed to look for **seasonality so it will always give you a seasonality plot** and it'll be for the person reading to determine whether there is actual seasonlity or not.  
 
@@ -135,4 +135,6 @@ There are certain key points, that need to be considered when we do, Time Series
 1. Check if time ordered residuals are independent
 2. White Noise: Time Series of independent residuals (i.e. independent and identically distributed (*iid*), normal with 0 mean and constant variance ![](http://mathurl.com/abetvkx.png)) It is given by ![white_noise](http://mathurl.com/y8sbreq5.png)
 3. When doing regression models of nonstationary time series, check for autocorrelation in the residual series, because **a pattern in the residual series is equivalent to pattern in the data not captured by our model**.
+
+The first thing we need to do after fitting a regression model, is plot the residuals against time. Since residuals aren't Time Series objects, we would need to use **plot.ts**.
 
