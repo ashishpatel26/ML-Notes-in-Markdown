@@ -122,13 +122,8 @@ The following methods are used for detecting autocorrelation:
 
 This function does the tests for all possible lags and plots them at the same time as well. It is very time efficient for this reason. 
 
-### STL Analysis
 
-We can also do an STL analysis which would give us the seasonality, trend and remainder plots for any time series. 
-
-> NOTE: If you find that the range of the seasonality plot is more or less the same as the range of the remained plot, then there isn't much seasonality. The STL is designed to look for **seasonality so it will always give you a seasonality plot** and it'll be for the person reading to determine whether there is actual seasonlity or not.  
-
-# Time Series Regression
+## Time Series Regression
 
 There are certain key points, that need to be considered when we do, Time Series Regression. They are as follows:
 
@@ -136,3 +131,18 @@ There are certain key points, that need to be considered when we do, Time Series
 2. White Noise: Time Series of independent residuals (i.e. independent and identically distributed (*iid*), normal with 0 mean and constant variance ![](http://mathurl.com/abetvkx.png)) It is given by ![white_noise](http://mathurl.com/y8sbreq5.png)
 3. When doing regression models of nonstationary time series, check for autocorrelation in the residual series, because **a pattern in the residual series is equivalent to pattern in the data not captured by our model**.
 
+# Seasonality
+
+### Smoothing or Filtering
+
+> Often the **smoothing or filtering** is done **before the data is delivered** and this **can be bad thing** because we don't know how seasonality was removed and also because we can only predict deseasonal values. 
+
+### STL (Seasonal Trend Lowess Analysis
+
+We can also do an STL analysis which would give us the seasonality, trend and remainder plots for any time series. 
+
+> NOTE: If you find that the range of the seasonality plot is more or less the same as the range of the remained plot, then there isn't much seasonality. The STL is designed to look for **seasonality so it will always give you a seasonality plot** and it'll be for the person reading to determine whether there is actual seasonlity or not.  
+ 
+### Moving Averages
+
+> Both can be used to remove seasonality 
