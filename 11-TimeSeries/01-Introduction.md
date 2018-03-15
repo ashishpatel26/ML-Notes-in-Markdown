@@ -146,3 +146,13 @@ We can also do an STL analysis which would give us the seasonality, trend and re
 ### Moving Averages
 
 > Both can be used to remove seasonality 
+> 
+
+# Forecasting
+
+1. Report to te same level of significacne as the original data
+2. Useall dp when doing calculations for the predictions
+3. **Only round at the end**
+4. Use units where available
+
+![](http://mathurl.com/yclyh8k8.png)
