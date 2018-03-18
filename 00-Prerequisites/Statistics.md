@@ -43,6 +43,23 @@
 
 3. **Subjective Probability**: These probabilities are not based on mathematical calculations and people use their opinions, their experiences to assert their viewpoints with some amount of relevant data that makes their own point stronger. 
 
+**Addition Rule**: The addition rule in probabilities is a rule that ensures that an event is not counted twice when calculating probabilities (where P(overlap) is the probability of both E1 and E2 occurring:
+
+![](http://mathurl.com/y9rte4y3.png)
+
+**Conditional Probability**: The probability of occurrence of an event given that some other event has already occurred. 
+
+**Independent Events**: If the probability of two events are completely unrelated. If we can prove that the probability of two occurring together is equal to the product of their individual probabilities, then we can say that the two events are independent. 
+
+**Random Variable**: The result of an experiment that has random outcomes is called a random variable. They can be of two types:
+
+1. **Discrete RV**: The number of drinks a person will order at **Tank** is an example of discrete random variable because it has to be a whole number.
+2. **Continuous RV**: The waiting time in line before one can order at a **Burger King** is an example of continuous variable because there are no fixed values that could be outcomes. The possibilities are infinite and continuous.
+3. **Binomial RV**: When an event has only two possible outcomes, the result is called a Binomial Random Variable.
+
+**Probability Density**: The curves that represent the distribution of probabilities are called Probability Density curves.
+
+
 ## Visualization Tips
 
 1. **Tables**: Useful for detailed recording and sharing of actual data
