@@ -59,6 +59,8 @@
 
 **Probability Density**: The curves that represent the distribution of probabilities are called Probability Density curves.
 
+## Distributions
+
 
 ## Visualization Tips
 
