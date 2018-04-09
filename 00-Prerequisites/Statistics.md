@@ -1,8 +1,6 @@
 # Statistics
 
-## Preliminaries
-
-### Definitions
+## Basics
 
 **Dataset**: Any group of values retrieved through a common method/procedure of collection.
 
@@ -13,7 +11,7 @@
 > Note: Always question about how the weights and categories were collected and why and to what extent it holds importance. 
 
 
-**Standard Deviation**: A quantity expressing by how much the members of a group differ from the mean value for the group and is given by the equation:
+**Standard Deviation**: A quantity expressing by how much the members of a group differ from the mean value for the group. In more formal terms, it's the average distance between a datapoint and the mean of the dataset and is given by the equation:
 
 ![sd](http://mathurl.com/y76cxpqb.png)
 
@@ -23,11 +21,15 @@
 
 **Empirical Rule or Three-Sigma Rule**: Most of the data points fall within three standard deviations, with 68% would lie within 1 *sd*, 95% within 2 *sd* and 99.7% would fall within 3 *sd*.
 
+![empirical rule](http://res.cloudinary.com/natural-log-zero/image/upload/v1522841733/Screen_Shot_2018-04-04_at_11.33.41_PM_nvlpum.png)
+
 > Note: It only works for symmetrically distributed data
 
 **Percentile Score**: The percentile score for any value **x** in the dataset is given by:
 
 ![](http://mathurl.com/yd9sgdeq.png)
+
+## Probabilities
 
 **Event**: An event is a set of probabilities e.g. When rolling a dice, an event A = (4,2,6) represents the event that an even number will appear.
 
@@ -59,7 +61,30 @@
 
 **Probability Density**: The curves that represent the distribution of probabilities are called Probability Density curves.
 
-## Distributions
+## Sampling
+
+There are a few conditions that need to be considered before sampling is done from various sources:
+
+1. **Size to Cost ratio**: The appropriate size of the sample based upon the cost per data point in the sample 
+2. **Inherent Bias**: If any bias was knowingly/unknowingly introduced while creating the sample, it will need to be considered!
+3. **Quality of Sample**
+
+A **simple random sample** is the gold standard when collecting samples. This means, that any given point during the sample selection process, any individual has the same probability of being chosen as any other individual.
+
+Some alternative sampling methods are:
+
+1. **kth point**: The first data point is selected and then every ***kth*** data point is selected in this method.
+2. **Opportunity Sampling**: The first ***n*** values are selected from the total data.
+3. **Stratified Sampling**: The whole sample is broken out into homogenous groups. Then we select few samples from each strata.
+4. **Cluster Sampling**:  The whole sample is collected from heterogenous groups with data points with different characteristics. Then we select few samples from each group. 
+
+## Confidence Intervals
+
+As the name suggests, the confidence intervals present a level of confidence for a given interval.
+
+## Hypothesis Testing
+
+The process to be able to test a hypothesis that has been presented. 
 
 
 ## Visualization Tips
