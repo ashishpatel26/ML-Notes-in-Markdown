@@ -161,3 +161,13 @@ The dot products can be defined for two vectors or matrices in the following way
 		
 		The value that we obtain for `theta` from the operation above is in radians.
 
+
+## FAQs
+
+### 1. What is the difference between a List and an NP Array?
+There are several differences between an NP Array and a Python List:
+
+1. There is no **append** method on a NP Array while the method works well on Python Lists.
+2. Lists can be added with a **+** operator.
+3. If `L1 = [1, 2]` and `L2 = [3, 4]`, adding two lists would gives us the concatenation of those lists (`L3 = L1 + L2` would give us the value of `L3` as `[1, 2, 3, 4]`) but adding two Numpy Array would give us the element wise sum for the two Arrays. For example for a Numpy array `A = np.array([1, 2])`, doing `A + A` would give us the value of `A` to be `array([2, 4])`. 
+4. Numpy lists can be multiplied and added to elements, while the same is not possible with Python Lists. Doing `2 * L1` would repeat all elements in `L1` but doing `2 * A` would multiply each element of the Numpy Array with the constant. 
