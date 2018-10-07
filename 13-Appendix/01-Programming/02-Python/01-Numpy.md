@@ -141,7 +141,11 @@ The dot products can be defined for two vectors or matrices in the following way
 		
 		The value that we obtain for `theta` from the operation above is in radians.
 
-
+#### Outer Products 
+This function takes in two vectors `a` and `b` and then returns their outer product.
+```python
+AOuter = np.outer(a, b)
+```
 
 
 ## Matrix
@@ -170,8 +174,18 @@ A = np.array([[1, 2], [3, 4]])
 Ainv 	= np.linalg.inv(A) 	// Gives us the inverse of A
 Adet 	= np.linalg.det(A) 	// Gives us the determinant of A
 Adiag 	= np.diag(A) 			// Gives us the diagonal elements of A in a vector
+Atrace = np.trace(A)		// Gives us the sum of diagonal elements of A
 ```
 > If you pass a **2D** Array to `np.diag`, then it returns the diagonal elements, if you a pass a **1D** array however, it returns a 2D Array with all off diagonal elements as `0` and the elements of the array as diagonal elements.
+
+### Solving a Linear System
+
+The problems in a linear system are often of the form ![linearSystem](http://mathurl.com/5uerks4.png). The solution for `x`, is easily given by ![linearSystem2](http://mathurl.com/6yysmlh.png). We are assuming that `A` is a square matrix and is invertible. The system has `D` equations and `D` unknowns to solve for. This can be simply done by using the equation above and the basic Numpy methods we have used thus far:
+
+```python
+x = np.linalg.inv(A).dot(b)		// Method 1
+x = np.linalg.solve(a, b)		// Method 2 (Recommended)
+``` 
 
 ## Operator overloading in 'np'
 
