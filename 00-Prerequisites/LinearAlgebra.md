@@ -20,17 +20,38 @@ A vector is a numeric measurement with directions. In two dimensions, a vector !
 
 ![magV](http://mathurl.com/y8nt6wqb.png) 
 
+### Vector Multiplications
+#### Dot Product 
+
+There are two ways to go about this:
+
 1. ![dotProd1](http://mathurl.com/y9qc43b6.png)
 
 	This is the summation of element wise multiplication of the two vectors. The notation ![atransb](http://mathurl.com/y7wgs22g.png) denotes that the vectors are column vectors and the result of the equation above would be a 1x1 vector which is a scalar quantity. 
-
+	
 2. ![cosDotProd1](http://mathurl.com/ycpoyuxb.png)
 	
-	This notation is not very convenient for vector multiplication unless a the angle on the right hand side is known to us. Although, it is a much more common practice to use this equation for finding out the angle between two vectors using 
+This notation is not very convenient for vector multiplication unless a the angle on the right hand side is known to us. Although, it is a much more common practice to use this equation for finding out the angle between two vectors using 
 	
-	![cosDotProd2](http://mathurl.com/yd35x774.png)
+![cosDotProd2](http://mathurl.com/yd35x774.png)
 		
+#### Outer Product
+The outer product of two vectors results in a matrix and is given by the equation:
+
+If there are two column vectors `u1` and `v1` that are given by ![u1](http://mathurl.com/ybqz6wvv.png) and ![u1](http://mathurl.com/y7y5yr4e.png) respectively. Then their outer product is written as ![representation](http://mathurl.com/ycex27tr.png)
+
+which then results to be ![outProductResult](http://mathurl.com/y7kgwn2n.png).
+
 ## Matrices
 
 Matrices are two dimensional set of numbers. These are very efficient data types for quick computations.
+
+### Matrix Multiplications
+
+
+#### Dot Product
+The product of two matrices A and B in given by the formulae 
+
+![matrixMultiplication](http://mathurl.com/ycnfztus.png)
+
 
