@@ -253,3 +253,8 @@ def add_two_to_int(parameter):
 		print("parameter must be an integer or float")
 ```
 
+## Data Generation
+
+There are multiple ways to generate data in Python and some of them are as follows:
+
+1. **Controlled by Number of Points**: `np.linspace(0, 10, 10)` takes in three arguments, the starting point, the ending point, and the number of points in between the two. 
