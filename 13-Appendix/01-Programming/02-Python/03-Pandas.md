@@ -57,6 +57,8 @@ It is relatively straightforward to be reading data from CSVs. One can use `pd.r
 6. **Handling comments**: If the file contains comments within the data, they can be distinguished using the delimiter passed to the `comment` argument as shown in `pd.read_csv('path_to_csv.csv', comment='#')`
 7. **Delimiter**: The delimiter in while reading a csv to a Pandas DataFrame object can be set using `sep` argument
 8. **Skipping rows**: Rows can be skipped while reading a csv file by using `skiprows` argument in combination with `header` argument.
+9. **Skipping footer**: Rows at the end of the file can be skipped using the `skipfooter = n` argument. This would skip the last `n` rows of the file. 
+	> **NOTE**: The `skipfooter` argument doesn't work with the default C Engine so we need to specify the `engine = python` when setting this parameter.
 
 #### Chunkwise loading
 
@@ -336,7 +338,8 @@ would then print, first the label, and then the contents of each row as a **Seri
 8. **Transformation**: Transformation functions are used to transform one or more columns after they have been grouped and is usually chained after the `groupby()` method as `transform(transformation_function)`. This transformation method passes the Series to `transform_function()` which could be a user defined function or a builtin one, which then returns a transformed series of a conforming size. 
 9. **Grouping and Filtering**: We can use the dictionary object created by `groupby()` method to loop over and therefore filter only the rows of interest.
 10. **Sorting**: We can sort the values in any column by using the `sort_values(ascending = False)` method available for columns of all dataframe objects.
-11. **Mathematical Operations**: There are various mathematical operations available for our use.
+11. **Matrix Operations**: Direct matrix operations will not work on Dataframes but `pandas.core.frame.DataFrame` object comes with an `as_matrix()` method available to each object for converting it readily into a Numpy 2D Array. This will only work for DataFrames with only numerical values though. There is a crucial difference between **Numpy 2D Arrays** and **Pandas' DataFrames** and that is, `X[0]` for a Numpy 2D Array returns the ***0th row*** while accessing a DataFrame ***X[0]*** would return the ***0th column*** of the DataFrame.
+12. **Mathematical Operations**: There are various mathematical operations available for our use.
 	1. **pct_change()**: This method can used to detect percentage change over a particular column or aggregation values.
 	2. **add()**: This method can be used to add two Series with corresponding row indices as `a.add(b)`. This would add the series `a` and `b`. However, if there are non matching indices, i.e. an index in `a` does not have any corresponding index in `b`, then this could return an `NaN` value. We can change this by changing the default non existent value by passing the argument `fill_value` into the `add()` method. This method is chainable so more than one Series can be added in a single line. 
 
