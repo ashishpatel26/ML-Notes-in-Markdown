@@ -22,7 +22,7 @@ If these assumptions do not hold, then linear regression probably isn't the mode
 
 
 
-### Variable Selection
+## Variable Selection
 
 The dataset will, more often than not, contain columns that do not have any effect on the dependent variable. This becomes problematic because we don't want to add too much noise to the dataset. The variables that do not effect the dependent variable (the outcome) will usually only decrease the performance of our model, and even if they do not, there's always an additional computing complexity that comes along with them. This could influence the costs of building the model, especially when we want to do it iteratively. 
 
@@ -60,6 +60,53 @@ The variables that are created when categorical variables are encoded, are calle
 We usually use one-hot encoding to do this, and it might seem like not including one last categorical dummy variable would cause a positive bias towards the rest of the equation but this is not the case. The coefficient for the last dummy variable is included in the b<sub>0</sub> term of the equation.
 
 *Dummy Variable trap*: One can never have all the dummy variables and b<sub>0</sub> in a model at the same time. We need to remove at least one dummy variable for each of the corresponding categorical variables because all of that will be modeled into b<sub>0</sub>. 
+
+## Measure of Accuracy
+
+### Mean Squared Error
+The root mean squared error in a linear regression problem is given by the equation ![mse](http://mathurl.com/y9brzcnn.png) which is the sum of squared differences between the actual value ![actualValue](http://mathurl.com/kt496dt.png) and the predicted value ![yhat](http://mathurl.com/yc3fp4p7.png) for each of the rows in the dataset (index iterated over `i`).
+
+## Intuition
+
+### Minimizing the error term we have above
+We do so by going through the following steps: 
+
+1. We write the equation ![mse](http://mathurl.com/y9brzcnn.png) again but we replace ![yhat](http://mathurl.com/yc3fp4p7.png) with the equation of the line that we are to predict. Let's say ![predictionLine](http://mathurl.com/y94r3wvh.png) where we don't know the values of ![a](http://mathurl.com/25elof5.png) and ![b](http://mathurl.com/25js5ug.png) yet. 
+
+	With this, our updated equation or the error term becomes ![error](http://mathurl.com/yd5kfvsb.png). 
+
+2. We now need to minimize the error term ![E](http://mathurl.com/y82dzd23.png) with respect to ![a](http://mathurl.com/25elof5.png) and ![b](http://mathurl.com/25js5ug.png) both. For this we use calculus method of partial derivatives. 
+3. We calculate partial derivative of ![E](http://mathurl.com/y82dzd23.png) w.r.t. ![a](http://mathurl.com/25elof5.png) and that can be written as:
+	
+	![partialDiffA](http://mathurl.com/yb8wutve.png) ![parDifA](http://mathurl.com/y8sa4nwz.png) `-1`
+	
+	Now we calculate partial derivate of the same equation w.r.t. ![b](http://mathurl.com/25js5ug.png) and that can be written and simplified as:
+	
+	![parDifB](http://mathurl.com/yb8v6uar.png) ![parDifB2](http://mathurl.com/y98a7qgf.png) `-2`
+	
+4. In order to minimize we equate these equations to zero and solve the equations:
+	
+	By solving `Eq 1`, we get 
+	
+	![eq1zero](http://mathurl.com/y7r55sjx.png) `-3`
+	
+	By solving `Eq 2`, we get 
+	
+	![eq2zero](http://mathurl.com/yd2uztuy.png) `-4`
+	
+5. Now we have two equations `3` and `4`. We can use these to solve for ![a](http://mathurl.com/25elof5.png) and ![b](http://mathurl.com/25js5ug.png), upon doing so we get the following values:
+	
+	![valA](http://mathurl.com/y8leyvd3.png) `-5`
+	
+	![valB](http://mathurl.com/ycq57l2z.png) `-6`
+	
+6. Now that we have  these equations, we can divide boh tops and bottoms by N, so that all our summation terms can be turned into means. For instance ![](http://mathurl.com/y8lfwpmw.png). We can divide the equations `5` and `6` with ![n2](http://mathurl.com/ycsnzgo2.png) to get the following results:
+
+	![ares](http://mathurl.com/yae3fw4d.png), 
+	
+	![bres](http://mathurl.com/ybnzy6jd.png)
+
+	
 
 ## CODE REFERENCES
 
