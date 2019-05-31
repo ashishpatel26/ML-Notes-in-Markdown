@@ -66,7 +66,7 @@ We usually use one-hot encoding to do this, and it might seem like not including
 ### Mean Squared Error
 The root mean squared error in a linear regression problem is given by the equation ![mse](http://mathurl.com/y9brzcnn.png) which is the sum of squared differences between the actual value ![actualValue](http://mathurl.com/kt496dt.png) and the predicted value ![yhat](http://mathurl.com/yc3fp4p7.png) for each of the rows in the dataset (index iterated over `i`).
 
-## Intuition
+## Intuition (Univariate Linear Regression)
 
 ### Minimizing the error term we have above
 We do so by going through the following steps: 
@@ -106,7 +106,17 @@ We do so by going through the following steps:
 	
 	![bres](http://mathurl.com/ybnzy6jd.png)
 
-	
+
+## Intuition (Multivariate Linear Regression)
+
+### Base equation
+
+A multivariate Linear Regression can be represented as 
+
+![multilinreg](http://mathurl.com/ybupzufq.png)
+
+where ![yhat](http://mathurl.com/oz8dctm.png) is the list of predictions, ![wt](http://mathurl.com/yckejlne.png) is the vector of weights for each variable, ![x](http://mathurl.com/4dpgym.png) is the set of parameters 
+
 
 ## CODE REFERENCES
 
